@@ -1,0 +1,842 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/Style1.css">
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg  bg1">
+            <div class="collapse navbar-collapse">
+                <a class="navbar-brand " href="#">
+                    <img src="@Url.Content("~/Content/images/icon2.jpg")" width="160" height="30" alt="">
+
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse " id="navbarMenu">
+                <ul class="navbar-nav nav">
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">Menu</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">Order History</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">Terms and Condition</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">About Us</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="navbar-text nav-link">
+                My Account<br />
+                @Html.ActionLink("Login", "", "", new { @Style = "color:White" })
+                |
+                @Html.ActionLink("SignUp", "", "", new { @Style = "color:White" })
+            </span>
+        </nav>
+    </header>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="divider">
+            <hr class="left" /><strong id="BS">BESTSELLERS</strong><hr class="right" />
+        </div>
+
+
+
+        <div class="jumbotron jmpi">
+            <div class="container-fluid ">
+                <div class="row justify-content-between">
+                    <div class="col-sm-8.5 card-deck ">
+                        <div class="card">
+                            <img src="@Url.Content("~/Content/images/margherita.webp.jpeg")" class="card-img-top" alt="...">
+                            <div class="bottom-left"><b>₹199</b></div>
+                            <div class="card-body">
+                                <h5 class="card-title">Margherita</h5>
+                                <p class="card-text"> Classic delight with 100% real mozzarella cheese</p>
+                                <hr />
+                                <span><small>Size</small></span>
+                                <div class="card-action">
+                                    <select id="items" name="items" required>
+                                        <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 99</option>
+                                        <option value="item_2">Medium &nbsp; &nbsp; ₹199</option>
+                                        <option value="item_3">Large &nbsp; &nbsp; ₹395</option>
+                                    </select> &nbsp; &nbsp;
+                                    <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="@Url.Content("~/Content/images/Farmhouse.png.jpeg")" height="152" class="card-img-top" alt="...">
+                            <div class="bottom-left"><b>₹395</b></div>
+                            <div class="card-body">
+                                <h5 class="card-title">Farmhouse</h5>
+                                <p class="card-text"> Delightful combination of onion, capsicum, tomato & grilled mushroom</p>
+                                <hr />
+                                <span><small>Size</small></span>
+                                <div class="card-action">
+                                    <select id="items" name="items" required>
+                                        <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 215</option>
+                                        <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                        <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                    </select> &nbsp; &nbsp;
+                                    <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="@Url.Content("~/Content/images/CheeseNcorn.jpeg")" height="152" class="card-img-top" alt="...">
+                            <div class="bottom-left"><b>₹305</b></div>
+                            <div class="card-body">
+                                <h5 class="card-title">Cheese N corn</h5>
+                                <p class="card-text"> A delectable combination of sweet & juicy golden corn</p>
+                                <hr />
+                                <span><small>Size</small></span>
+                                <div class="card-action">
+                                    <select id="items" name="items" required>
+                                        <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 165</option>
+                                        <option value="item_2">Medium &nbsp; &nbsp; ₹305</option>
+                                        <option value="item_3">Large &nbsp; &nbsp; ₹495</option>
+                                    </select> &nbsp; &nbsp;
+                                    <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 offset-sm-0 ">
+                        <div class="card sticky-top hgt example card-pos">
+                            <img style="position: relative;left:115px;" src="@Url.Content("~/Content/images/cart.png")" alt="...">
+                            <div class="card-body" id="cartArea">
+                                <h5 class="card-text text-center"><br /><br /><br />YOUR CART IS EMPTY</h5>
+                                <p class="text-center">Please add some items from the menu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/PepperBbq.jpeg")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹335</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pepper Barbecue Chicken</h5>
+                            <p class="card-text"> Pepper barbecue chicken for that extra zing</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹185</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹335</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹585</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/PeppyPanner.jpeg")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹395</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Peppy Panner</h5>
+                            <p class="card-text"> Flavorful trio of juicy paneer, crisp capsicum with spicy red paprika</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 215</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/VeggieParadise.jpeg")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹395</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Veggie Paradise</h5>
+                            <p class="card-text"> The awesome foursome! Golden corn, black olives, capsicum, red paprika</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹215</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/VegExtra.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹450</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Veg Extravaganza</h5>
+                            <p class="card-text">Black olives, capsicum, onion, corn, tomato, jalapeno & extra cheese</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹235</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹450</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹695</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/ChickenSausage.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹305</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Sausage</h5>
+                            <p class="card-text"> American classic! Spicy, herbed chicken sausage on pizza</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 165</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹305</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹495</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/DeluxeVeggie.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹450</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Deluxe Veggie</h5>
+                            <p class="card-text"> Veg delight - onion, capsicum, grilled mushroom, corn & paneer</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹235</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹450</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹695</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divi">
+            <hr class="left" /><strong id="VG">VEG</strong><hr class="right" />
+        </div>
+
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/CheeseNtomato.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹305</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Cheese N Tomato</h5>
+                            <p class="card-text">A delectable combination of cheese and juicy tomato</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹165</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹305</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹495</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/DoubleCheeseaMargherita.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹335</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Double Cheese Margherita</h5>
+                            <p class="card-text"> A classic delight loaded with extra 100% real mozzarella cheese</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 185</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹335</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹535</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/AchariDoPyza.jpeg")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹305</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Achari Do Pyaza</h5>
+                            <p class="card-text"> Tangy & spicy achari flavours on a cheesy onion pizza- as desi as it gets!</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹165</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹305</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹495</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/FreshVeggie.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹335</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Fresh Veggie</h5>
+                            <p class="card-text">Delectable combination of onion & capsicum, a veggie lovers pick</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹185</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹335</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹535</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/Farmhouse.png.jpeg")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹395</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Farmhouse</h5>
+                            <p class="card-text"> Delightful combination of onion, capsicum, tomato & grilled mushroom</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 215</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/Mexican.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹395</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mexican Green Wave</h5>
+                            <p class="card-text"> Mexican herbs sprinkled on onion, capsicum, tomato & jalapeno</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹215</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/PannerMakhni.jpeg")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹395</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Paneer Makhani</h5>
+                            <p class="card-text">Flavorful twist of spicy makhani sauce topped with paneer & capsicum</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹215</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/KadhaiPaneer.jpeg")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹395</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Kadhai Paneer</h5>
+                            <p class="card-text"> Paneer chunks in your favourite spicy kadhai masala flavors</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 215</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/TandooriPaneer.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹450</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Indi Tandoori Paneer</h5>
+                            <p class="card-text"> It is hot. It is spicy.Tandoori paneer with capsicum, paprika & mint mayo</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹235</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹450</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹695</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="divi">
+            <hr class="left" /><strong id="NVG">NON VEG</strong><hr class="right" />
+        </div>
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/ChickenGolden.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹450</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Golden Delight</h5>
+                            <p class="card-text">Double pepper barbecue chicken, golden corn and extra cheese, true delight</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹235</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹695</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/ChickenFiesta.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹450</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Fiesta</h5>
+                            <p class="card-text"> Grilled chicken rashers, peri-peri chicken, onion & capsicum, a complete fiesta</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 235</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹695</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/NonVegSupreme.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹570</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Non Veg Supreme</h5>
+                            <p class="card-text"> Supreme combination of black olives, onion, capsicum, grilled mushroom, pepper barbecue chicken</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹305</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹570</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹835</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/ChickenPepperoni.jpeg")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹570</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Pepperoni</h5>
+                            <p class="card-text">A classic American taste! Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹305</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹570</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹835</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/ChickenDominator.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹570</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Dominator</h5>
+                            <p class="card-text"> Loaded with double pepper barbecue chicken, peri-peri chicken, chicken tikka & grilled chicken rashers</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 305</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹570</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹835</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/IndiChickenTikka.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹570</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Indi Chicken Tikka</h5>
+                            <p class="card-text"> The wholesome flavour of tandoori masala with Chicken tikka, onion, red paprika & mint mayo</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹305</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹570</option>
+                                    <option value="item_3">Large &nbsp; &nbsp; ₹835</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="divii">
+            <hr class="left" /><strong id="BS">PIZZA MANIA</strong><hr class="right" />
+        </div>
+
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/VegLoaded.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹135</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Veg Loaded</h5>
+                            <p class="card-text">Tomato, jalapeno & grilled mushroom served in a fresh pan crust</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹135</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/Cheesy.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹99</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Cheesy</h5>
+                            <p class="card-text"> Cheese lovers paradise, loaded with mozzarella, cheddar & gouda cheese</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 99</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/PannerNonion.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹95</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Paneer & Onion</h5>
+                            <p class="card-text"> Creamy Paneer & Onion, served in a fresh pan crust</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹95</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="jumbotron jmp ">
+            <div class="container-fluid">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/NonVegLoaded.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹155</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Non Veg Loaded</h5>
+                            <p class="card-text">Pepper barbecue chicken & peri-peri chicken in a fresh pan crust</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹155</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/PepperBbqChicken.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹105</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pepper barbecue chicken</h5>
+                            <p class="card-text"> Pepper barbecue chicken for that extra zing</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 105</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/ChickenSausagemania.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹95</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Sausage</h5>
+                            <p class="card-text"> American classic! Spicy, herbed chicken sausage on pizza</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹95</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="jumbotron jmp">
+            <div class="container-fluid ">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/CheeseNtomato.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹79</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Golden Corn</h5>
+                            <p class="card-text">Sweet & juicy golden corn for that lipsmacking taste</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹79</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/Capsicum.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹75</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Capsicum</h5>
+                            <p class="card-text"> Fresh & crisp capsicum for the perfect crunch in pizza</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 75</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@Url.Content("~/Content/images/Onion.png")" height="152" class="card-img-top" alt="...">
+                        <div class="bottom-left"><b>₹59</b></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Onion</h5>
+                            <p class="card-text"> Crunchy onion on a cheesy base. The pizza mania classic</p>
+                            <hr />
+                            <span><small>Size</small></span>
+                            <div class="card-action">
+                                <select id="items" name="items" required>
+                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹59</option>
+                                </select> &nbsp; &nbsp;
+                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row ">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                    <div class="ft-logo"><img src="~/Content/images/icon3.png" />></div>
+                </div>
+            </div>
+
+            <div class="row ">
+                <!-- footer-about -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                    <div class="footer-widget ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">DISCLAIMER</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.footer-about -->
+                <!-- footer-links -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                    <div class="footer-widget ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">PRIVACY POLICY</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.footer-links -->
+                <!-- footer-links -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                    <div class="footer-widget ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.footer-links -->
+                <!-- footer-links -->
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-6 col-6 ">
+                    <div class="footer-widget ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">TERMS AND CONDITIONS</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.footer-links -->
+                <!-- tiny-footer -->
+            </div>
+            <hr class="footer-line">
+            <div class="row ">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center ">
+                    <div class="tiny-footer">
+                        <p>All Rights Reserved. Copyright © Jubilant FoodWorks Ltd.</p>
+                    </div>
+                </div>
+                <!-- /. tiny-footer -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

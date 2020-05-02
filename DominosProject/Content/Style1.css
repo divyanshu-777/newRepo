@@ -1,0 +1,191 @@
+﻿.bg1{
+    background-color: #0066a7 !important;
+}
+.nav-link{
+    font-size: 17px;
+    color: white !important;
+    
+}
+.nav-link:hover{
+    color: black !important;
+}
+.navbar-brand{
+    font-size: 27px;
+    color: white !important;
+    font-family: 'Roboto Condense';
+    margin-left: 4px;
+}
+.nav {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.divider {
+	width:1100px;
+	text-align:center;
+    margin-top:30px;
+}
+
+.divider hr {
+	margin-left:auto;
+	margin-right:auto;
+	width:43%;
+    
+
+}
+
+.left {
+	float:left;
+    border: 1px solid lightgrey;
+}
+
+.right {
+	float:right;
+     border: 1px solid lightgrey;
+}
+
+.jumbotron-fluid{
+    margin-bottom: 0rem;
+}
+
+.card-deck{
+    width:1050px ;
+}
+.bottom-left {
+  position: absolute;
+  color:white !important;
+  top:32%;
+  left: 10px;
+  font-size :large;
+  font-family:Arial, Helvetica, sans-serif;
+ 
+}
+#BS{
+    font-family:'Palatino Linotype';
+    font-size:larger;
+    color:#3685ab;
+}
+
+#VG{
+    font-family:'Palatino Linotype';
+    font-size:x-large;
+    color:#20cc20;
+}
+
+#NVG{
+    font-family:'Palatino Linotype';
+    font-size:larger;
+    color:red;
+}
+.card-pos img{
+    margin-right: 25px;
+    width:200px;
+    height:200px;
+   
+}
+.jmp{
+              margin-bottom: -4rem;
+              margin-left: 1rem;
+}
+.jmpi{
+              margin-bottom: -4rem;
+              margin-left: 2rem;
+}
+
+
+.divi {
+	width:1100px;
+	text-align:center;
+    
+    margin-top:70px;
+}
+
+.divi hr {
+	margin-left:auto;
+	margin-right:auto;
+	width:44%;
+    
+
+}
+
+.divii {
+	width:1100px;
+	text-align:center;
+    
+    margin-top:70px;
+}
+
+.divii hr {
+	margin-left:auto;
+	margin-right:auto;
+	width:42%;
+    
+
+}
+
+.footer{
+    background-color: #1e2f3a;
+}
+
+.ft-logo{
+    margin-top: 5px;
+    margin-top: 50px;
+    margin-left: -47px;
+}
+
+.footer-title{
+    color: white !important;
+}
+
+.tiny-footer { font-size: 15px; padding: 14px 0px; font-weight: 600; background-color: transparent; border-top: 1px solid #152e3d; color: #888d90; line-height: 1; }
+
+.footer-line{
+    border-color: #484d50;
+}
+
+.footer-widget{
+    padding-bottom: 50px;
+    padding-top: 40px; 
+}
+.footer-widget a{
+    color:lightblue;
+}
+
+
+.sticky-top{
+position:fixed;
+max-width: 100%;
+margin-top:142px;
+overflow-y:scroll;
+}
+
+.hgt{
+    height: 450px;
+   max-height :450px;
+}
+
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+
+body::-webkit-scrollbar{
+     display:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
