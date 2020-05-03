@@ -1,0 +1,220 @@
+﻿body {
+    overflow-x: hidden;
+    padding-bottom:0px !important;
+}
+
+@media only screen and (min-width :992px){
+    .jumbotron button{
+        position:relative;
+        top:90px;
+        left:50px;
+    }
+    .jumbotron h2{
+        position:relative;
+        top:90px;
+        left:50px;
+    }
+    .jumbotron p{
+        position:relative;
+        top:85px;
+        left:50px;
+    }
+}
+
+.navbar{
+    background-color:#ffffff !important;
+}
+
+    .navbar a {
+        color: #5f88a3;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+.btn-danger {
+    background-color: #f3223b !important;
+    font-size:97% !important;
+}
+.jumbotron {
+    background-color: #1a5ca3 !important;
+    min-height:455px;
+}
+.jumbotron h2{
+    color:white;
+    font-size:220% !important;
+}
+#deliveryExec{
+    height:130px;
+    width:400px;
+    position:absolute;
+    top:380px;
+    left:100px;
+    z-index:4;
+}
+
+#imgBackground{
+    position:absolute;
+    top:80px;
+    left:470px;
+    z-index:1;
+}
+.jumbotron button {
+    background-color: #1fb31a;
+    color: white;
+    font-weight: bold;
+    height: 60px;
+    width: 400px;
+    border-radius: 3px !important;
+}
+
+.jumbotron p {
+    color: #46a0ff;
+    font-size:130%;
+}
+
+.container h2 {
+    color: #708aa5;
+    font-weight:bold;
+    font-size:28px !important;
+    margin-bottom:25px;
+}
+
+.carousel img{
+    width:100%;
+}
+
+.card-footer{
+    background-color:white !important;
+}
+
+.card h4,p {
+    color: #2a4547;
+}
+
+.card p{
+    font-size:95%;
+}
+
+.card h4 {
+    font-size: 18px !important;
+    font-weight:700;
+}
+
+.card-footer {
+    color: #de042e;
+    font-weight:800;
+    font-size:90%;
+}
+
+#appJumbotron {
+    background-color: #f3f6fb !important;
+    margin-top:80px;
+}
+
+    #appJumbotron h1 {
+        color: #58678c;
+        font-weight: 700;
+        position: relative;
+        top: 110px;
+        left: 100px;
+    }
+
+    #appJumbotron p {
+        color: #50648b;
+        position: relative;
+        top: 130px;
+        left: 100px;
+        font-size: 27px;
+    }
+    #playstore{
+        position:relative;
+        top:170px;
+        left:100px;
+    }
+#appstore {
+    position: relative;
+    top: 170px;
+    left:130px;
+}
+
+#appScreen{
+    position:relative;
+    top:55px;
+    left:-40px;
+}
+
+#details p {
+    color: #58678c;
+    font-size:15px;
+}
+
+#details h5 {
+    color: #58678c;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#footer {
+    background-color: #212f3f;
+}
+
+    #footer h5 {
+        color: #546273;
+        margin-bottom:25px;
+    }
+
+ul {
+    line-height: 230%;
+    list-style-type: none;
+    color: white;
+    padding: 0px;
+    font-size: 17px;
+    font-weight:500;
+}
+
+#copyrightFooter {
+    background-color: #1a2735;
+}
+
+    #copyrightFooter p {
+        color: #396274 ;
+    }
+
+#bannerImg {
+    position: relative !important;
+    top: -100px;
+    left: 200px;
+    z-index: 5;
+}
+
+#banner {
+    display: none;
+    position: sticky;
+    top: 0px;
+    left: 300px;
+    z-index: 5;
+    background-color:#1a5ca3;
+}
+
+#banner button {
+    background-color: #1fb31a;
+    color: white;
+    font-weight: bold;
+    height: 60px;
+    width: 400px;
+    border-radius: 3px !important;
+}
+
+#banner p {
+    color: #46a0ff;
+    font-size: 130%;
+}
+
+#banner h2 {
+    color: white;
+    font-size: 220% !important;
+}
+
+body::-webkit-scrollbar{
+     display:none;
+}

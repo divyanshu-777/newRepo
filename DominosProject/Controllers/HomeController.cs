@@ -10,13 +10,12 @@ namespace DominosProject.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
 
             return View();
         }
-        public ActionResult Page()
+        public ActionResult HomePage()
         {
-            ViewBag.Title = "Home Page";
+           
 
             return View();
         }

@@ -16,49 +16,59 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-expand-lg  bg1">
-            <div class="collapse navbar-collapse">
-                <a class="navbar-brand " href="#">
-                    <img src="@Url.Content("~/Content/images/icon2.jpg")" width="160" height="30" alt="">
+        <nav class="navbar navbar-expand-lg bg1" id="navbar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarclosed" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand offset-lg-1 mx-sm-auto mx-md-auto ml-lg-5" href="#"><img src="~/Content/images/icon2.jpg" width="160" height="30" alt="Domino's" id="navbarLogo" /></a>
 
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-            <div class="collapse navbar-collapse " id="navbarMenu">
-                <ul class="navbar-nav nav">
-                    <li class="nav-item active">
-                        <a href="#" class="nav-link">Home</a>
+            <div class="collapse navbar-collapse" id="navbarclosed">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="#" class="nav-link">Menu</a>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#">Menu</a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="#" class="nav-link">Order History</a>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#">Order History</a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="#" class="nav-link">Terms and Condition</a>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#">Terms and Condition</a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="#" class="nav-link">Contact</a>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#">About Us</a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="#" class="nav-link">About Us</a>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#">Contact</a>
                     </li>
                 </ul>
+                <span class="navbar-text nav-link">
+                    My Account<br />
+                    @Html.ActionLink("Login", "", "", new { @Style = "color:White" })
+                    |
+                    @Html.ActionLink("SignUp", "", "", new { @Style = "color:White" })
+                </span>
             </div>
-            <span class="navbar-text nav-link">
-                My Account<br />
-                @Html.ActionLink("Login", "", "", new { @Style = "color:White" })
-                |
-                @Html.ActionLink("SignUp", "", "", new { @Style = "color:White" })
-            </span>
         </nav>
+
     </header>
 
     <div class="jumbotron jumbotron-fluid">
+
+        <div class="row" style="margin-left:51px;">
+            <div class="col-sm-4 ">
+                <img src="~/Content/images/banner.png" height="130" width="500" />
+            </div>
+            <div class="col-sm-4 col-sm-offset-1">
+                <img src="~/Content/images/bann.png" height="132" />
+            </div>
+        </div>
+
+
+
+
+
         <div class="divider">
             <hr class="left" /><strong id="BS">BESTSELLERS</strong><hr class="right" />
         </div>
@@ -144,63 +154,63 @@
 
         <div class="jumbotron jmp ">
             <div class="container-fluid">
-                <div class="card-deck">
-                    <div class="card">
-                        <img src="@Url.Content("~/Content/images/PepperBbq.jpeg")" height="152" class="card-img-top" alt="...">
-                        <div class="bottom-left"><b>₹335</b></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Pepper Barbecue Chicken</h5>
-                            <p class="card-text"> Pepper barbecue chicken for that extra zing</p>
-                            <hr />
-                            <span><small>Size</small></span>
-                            <div class="card-action">
-                                <select id="items" name="items" required>
-                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹185</option>
-                                    <option value="item_2">Medium &nbsp; &nbsp; ₹335</option>
-                                    <option value="item_3">Large &nbsp; &nbsp; ₹585</option>
-                                </select> &nbsp; &nbsp;
-                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="@Url.Content("~/Content/images/PepperBbq.jpeg")" height="152" class="card-img-top" alt="...">
+                            <div class="bottom-left"><b>₹335</b></div>
+                            <div class="card-body">
+                                <h5 class="card-title">Pepper Barbecue Chicken</h5>
+                                <p class="card-text"> Pepper barbecue chicken for that extra zing</p>
+                                <hr />
+                                <span><small>Size</small></span>
+                                <div class="card-action">
+                                    <select id="items" name="items" required>
+                                        <option value="" selected="">Regular  &nbsp; &nbsp; ₹185</option>
+                                        <option value="item_2">Medium &nbsp; &nbsp; ₹335</option>
+                                        <option value="item_3">Large &nbsp; &nbsp; ₹585</option>
+                                    </select> &nbsp; &nbsp;
+                                    <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <img src="@Url.Content("~/Content/images/PeppyPanner.jpeg")" height="152" class="card-img-top" alt="...">
-                        <div class="bottom-left"><b>₹395</b></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Peppy Panner</h5>
-                            <p class="card-text"> Flavorful trio of juicy paneer, crisp capsicum with spicy red paprika</p>
-                            <hr />
-                            <span><small>Size</small></span>
-                            <div class="card-action">
-                                <select id="items" name="items" required>
-                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 215</option>
-                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
-                                    <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
-                                </select> &nbsp; &nbsp;
-                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                        <div class="card">
+                            <img src="@Url.Content("~/Content/images/PeppyPanner.jpeg")" height="152" class="card-img-top" alt="...">
+                            <div class="bottom-left"><b>₹395</b></div>
+                            <div class="card-body">
+                                <h5 class="card-title">Peppy Panner</h5>
+                                <p class="card-text"> Flavorful trio of juicy paneer, crisp capsicum with spicy red paprika</p>
+                                <hr />
+                                <span><small>Size</small></span>
+                                <div class="card-action">
+                                    <select id="items" name="items" required>
+                                        <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 215</option>
+                                        <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                        <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                    </select> &nbsp; &nbsp;
+                                    <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <img src="@Url.Content("~/Content/images/VeggieParadise.jpeg")" height="152" class="card-img-top" alt="...">
-                        <div class="bottom-left"><b>₹395</b></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Veggie Paradise</h5>
-                            <p class="card-text"> The awesome foursome! Golden corn, black olives, capsicum, red paprika</p>
-                            <hr />
-                            <span><small>Size</small></span>
-                            <div class="card-action">
-                                <select id="items" name="items" required>
-                                    <option value="" selected="">Regular  &nbsp; &nbsp; ₹215</option>
-                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
-                                    <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
-                                </select> &nbsp; &nbsp;
-                                <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                        <div class="card">
+                            <img src="@Url.Content("~/Content/images/VeggieParadise.jpeg")" height="152" class="card-img-top" alt="...">
+                            <div class="bottom-left"><b>₹395</b></div>
+                            <div class="card-body">
+                                <h5 class="card-title">Veggie Paradise</h5>
+                                <p class="card-text"> The awesome foursome! Golden corn, black olives, capsicum, red paprika</p>
+                                <hr />
+                                <span><small>Size</small></span>
+                                <div class="card-action">
+                                    <select id="items" name="items" required>
+                                        <option value="" selected="">Regular  &nbsp; &nbsp; ₹215</option>
+                                        <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                        <option value="item_3">Large &nbsp; &nbsp; ₹595</option>
+                                    </select> &nbsp; &nbsp;
+                                    <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
 

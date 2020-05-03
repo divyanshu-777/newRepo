@@ -2,7 +2,7 @@
     background-color: #0066a7 !important;
 }
 .nav-link{
-    font-size: 17px;
+    font-size: 15px;
     color: white !important;
     
 }
@@ -157,12 +157,12 @@
 .sticky-top{
 position:fixed;
 max-width: 100%;
-margin-top:142px;
+margin-top:160px;
 overflow-y:scroll;
 }
 
 .hgt{
-    height: 450px;
+    height: 430px;
    max-height :450px;
 }
 
