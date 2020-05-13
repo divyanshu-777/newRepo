@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BAL
+namespace DTO
 {
-    public class Class1
+   public class LoginDominos
     {
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

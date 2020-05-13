@@ -20,7 +20,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarclosed" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand offset-lg-1 mx-sm-auto mx-md-auto ml-lg-5" href="#"><img src="~/Content/images/icon2.jpg" width="160" height="30" alt="Domino's" id="navbarLogo" /></a>
+            <a style="margin-top:-11px" class="navbar-brand offset-lg-1 mx-sm-auto mx-md-auto ml-lg-5" href="#"><img src="~/Content/images/icon2.jpg" width="150" height="30"  alt="Domino's" id="navbarLogo" /></a>
 
             <div class="collapse navbar-collapse" id="navbarclosed">
                 <ul class="navbar-nav mx-auto">
@@ -45,7 +45,8 @@
                 </ul>
                 <span class="navbar-text nav-link">
                     My Account<br />
-                    @Html.ActionLink("Login", "", "", new { @Style = "color:White" })
+                    @*@Html.ActionLink("Login", "#", "#", new { id = "myBtn", @Style = "color:White", })*@
+                    <a  style="color:white"; href="#" id="myBtn">Login</a>
                     |
                     @Html.ActionLink("SignUp", "", "", new { @Style = "color:White" })
                 </span>
@@ -56,11 +57,11 @@
 
     <div class="jumbotron jumbotron-fluid">
 
-        <div class="row" style="margin-left:51px;">
+        <div class="row " style="margin-left:51px;">
             <div class="col-sm-4 ">
                 <img src="~/Content/images/banner.png" height="130" width="500" />
             </div>
-            <div class="col-sm-4 col-sm-offset-1">
+            <div class="col-sm-4  col-sm-offset-1">
                 <img src="~/Content/images/bann.png" height="132" />
             </div>
         </div>
@@ -78,9 +79,10 @@
         <div class="jumbotron jmpi">
             <div class="container-fluid ">
                 <div class="row justify-content-between">
-                    <div class="col-sm-8.5 card-deck ">
+                    <div class="card-deck ">
                         <div class="card">
                             <img src="@Url.Content("~/Content/images/margherita.webp.jpeg")" class="card-img-top" alt="...">
+
                             <div class="bottom-left"><b>₹199</b></div>
                             <div class="card-body">
                                 <h5 class="card-title">Margherita</h5>
@@ -486,7 +488,7 @@
                             <div class="card-action">
                                 <select id="items" name="items" required>
                                     <option value="" selected="">Regular  &nbsp; &nbsp; ₹235</option>
-                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹450</option>
                                     <option value="item_3">Large &nbsp; &nbsp; ₹695</option>
                                 </select> &nbsp; &nbsp;
                                 <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
@@ -504,7 +506,7 @@
                             <div class="card-action">
                                 <select id="items" name="items" required>
                                     <option value="" selected="">Regular  &nbsp; &nbsp; ₹ 235</option>
-                                    <option value="item_2">Medium &nbsp; &nbsp; ₹395</option>
+                                    <option value="item_2">Medium &nbsp; &nbsp; ₹450</option>
                                     <option value="item_3">Large &nbsp; &nbsp; ₹695</option>
                                 </select> &nbsp; &nbsp;
                                 <button type="button" id="Adtbtn" class="btn btn-outline-success btn-sm">ADD TO CART</button>
@@ -724,7 +726,7 @@
             <div class="container-fluid ">
                 <div class="card-deck">
                     <div class="card">
-                        <img src="@Url.Content("~/Content/images/CheeseNtomato.png")" height="152" class="card-img-top" alt="...">
+                        <img src="@Url.Content("~/Content/images/GoldenCorn.png")" height="152" class="card-img-top" alt="...">
                         <div class="bottom-left"><b>₹79</b></div>
                         <div class="card-body">
                             <h5 class="card-title">Golden Corn</h5>
@@ -840,13 +842,56 @@
 
 
 
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <img style="margin-top:-16px; margin-left:-14px;" src="~/Content/images/loginbann.png" />
+                    @*<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>*@
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                            <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                            <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" checked>Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    </form>
+                </div>
+            </div>
 
+        </div>
+    </div> 
+
+  
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <script>
+$(document).ready(function(){
+    $("#myBtn").click(function () {
+        $("#myModal").modal();
+  });
+});
+    </script>
+
+   
+
+
 
 </body>
 </html>

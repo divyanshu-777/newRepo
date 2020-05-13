@@ -1,0 +1,111 @@
+﻿body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+  
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar {
+    background-color: #0066a7 !important;
+}
+
+    .navbar a:hover {
+        color: #0badf1 !important;
+    }
+
+nav .navbar-nav li a {
+    color: white !important;
+}
+
+.navbar-text {
+    font-size: 80%;
+    color: white !important;
+}
+
+#navbarLogo {
+    position: relative;
+    left: 20px;
+    bottom: 5px;
+}
+
+
+#footer {
+    background-color: #212f3f;
+}
+
+    #footer h5 {
+        color: #546273;
+        margin-bottom: 25px;
+    }
+
+#footer ul {
+    line-height: 270%;
+    list-style-type: none;
+    color: white;
+    padding: 0px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+    #footer a {
+        color: #768ba1;
+        font-size:16px;
+        padding:0px 10px 0px 10px;
+    }
+
+    #footer a:hover {
+        text-decoration:none;
+    }
+
+#copyrightFooter {
+    background-color: #1a2735;
+}
+
+    #copyrightFooter p {
+        color: #396274;
+    }
+
+     #playstoreIcon{
+        width:130px;
+        height:45px;
+    }
+    #appstoreIcon {
+    width: 130px;
+    height: 45px;
+    margin-left:10px;
+}
+
+    .tiny-footer {
+        font-size: 15px;
+        padding: 14px 0px;
+        font-weight: 600;
+        background-color: transparent;
+        border-top: 1px solid #152e3d;
+        color: #888d90;
+        line-height: 1;
+        }
+
+
+    .modal-content{
+     width:82%;
+ }
+  

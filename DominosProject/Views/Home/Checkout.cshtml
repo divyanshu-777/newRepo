@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/Checkout.css">
+
+<div class="row">
+    <div class="col-7 mx-auto" id="emptyCart">
+        <div class="emptyCartData">
+          
+            <img src="~/Images/cart_empty.png" alt="" />
+            <h4>YOUR CART IS EMPTY</h4>
+            <P>Please add some items from the menu.</P>
+            <button class="btn" id="exploreMenu" onclick="location.href='/Home/PizzaMenu'" type="button">EXPLORE MENU</button>
+        </div>
+    </div>
+    <div class="col-8 p-4" style="display:none">
+        <div class="numberOfItems"></div>
+        <a href="/home/menu" class="float-right">Explore Menu</a>
+        <div class="itemList"></div>
+    </div>
+    <div class="col-4 p-4">
+        <p><b>Price Details</b></p>
+        <div id="billAmount" class="px-4 py-3">
+            <div class="row">
+                <ul class="col-9">
+                    <li>Sub Total</li>
+                    <li>GST</li>
+                    <li>Discount</li>
+                    <hr />
+                    <li>Grand Total</li>
+                </ul>
+                <ul class="col-3 viewEmptyTotal" >
+                    <li id="subTotal">₹  0</li>
+                    <li id="gst">₹  0</li>
+                    <li id="discount">-</li>
+                    <hr style="position:relative;left:-30px" />
+                    <li id="grandTotal">₹  0</li>
+
+                </ul>
+            </div>
+            <button class="btn" id="placeOrder">PLACE ORDER</button>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        let JSONcart = JSON.parse(localStorage.getItem("cart"));
+        var old_html = $('.emptyCartData').html();
+        var oldhtmlcart = $('.viewEmptyTotal').html();
+
+        $(document).ready(function () {
+            displayFinalCart();
+            addPlaceOrderRequest();
+
+        });
+
+
+
+
+        function displayFinalCart() {
+
+            if ($.isEmptyObject(JSONcart)) {
+                //  $(".emptyCartData").show();
+                $("#loadCart").empty();
+                $(".emptyCartData").html(old_html);
+                $(".viewEmptyTotal").html(oldhtmlcart);
+                return;
+            }
+            $("#emptyCartData").hide();
+            $("#loadCart").remove();
+
+            let items = `<div  id="loadCart">`;
+            let Gst = 0;
+            var GrandTotal = 0;
+            var subTotal = 0;
+            for (let element in JSONcart) {
+
+                subTotal += parseInt(JSONcart[element].Price);
+                Gst = parseInt(subTotal * 0.05);
+                GrandTotal = subTotal+ Gst;
+                items += `<div><div class="float-right text-center"><h5> ₹ ${JSONcart[element].Price}</h5>
+                <div class="Quantity">Quantity  <i class="fas fa-minus-square fa-lg" id="${JSONcart[element].ProductId}"></i>
+                ${JSONcart[element].Quantity}  <i class="fas fa-plus-square fa-lg" id="${JSONcart[element].ProductId}"></i></div></div>
+                <h5>${JSONcart[element].Name}</h5><p>${JSONcart[element].Size}</p></div><hr/>`;
+            }
+            $('.emptyCartData').html(items);
+            $('#subTotal').html("₹ " + subTotal);
+            $('#gst').html("₹ " + Gst);
+            $('#grandTotal').html("₹ " + GrandTotal);
+            changeQuantityEvent()
+        }
+
+        function changeQuantityEvent() {
+            $(".fa-plus-square").click(function () {
+                let productid = $(this).attr("id");
+                JSONcart[productid]={
+                    ...JSONcart[productid],
+                    "Price": parseInt(JSONcart[productid].Price) +parseInt(JSONcart[productid].Price / JSONcart[productid].Quantity),
+                    "Quantity": JSONcart[productid].Quantity + 1
+            };
+            localStorage.setItem("cart", JSON.stringify(JSONcart));
+            displayFinalCart();
+        });
+
+        $(".fa-minus-square").click(function () {
+            let productid = $(this).attr("id");
+            if (JSONcart[productid].Quantity > 1) {
+                JSONcart[productid] = {
+                    ...JSONcart[productid],
+                    "Price": parseInt(JSONcart[productid].Price) - parseInt(JSONcart[productid].Price / JSONcart[productid].Quantity),
+                    "Quantity": JSONcart[productid].Quantity - 1
+            };
+        }
+        else {
+                    delete JSONcart[productid];
+        }
+        localStorage.setItem("cart", JSON.stringify(JSONcart));
+        displayFinalCart();
+        });
+        }
+
+        function addPlaceOrderRequest() {
+            $("#placeOrder").click(function () {
+                if ($.isEmptyObject(JSONcart)) {
+                    $(this).attr("disabled", "true");
+                }
+                else {
+                    postCart();
+                }
+            });
+        }
+
+        function postCart() {
+            let arrCart = [];
+            for (let element in JSONcart) {
+                arrCart.push(
+                    {
+                        "MenuId": parseInt(JSONcart[element].MenuId),
+                        "Name": JSONcart[element].Name,
+                        "Price": parseInt(JSONcart[element].Price),
+                        "Size": JSONcart[element].Size,
+                        "Quantity": parseInt(JSONcart[element].Quantity)
+
+                    });
+            }
+
+            $.ajax({
+                url: '/api/Pizza/',
+                method: 'Post',
+                data: JSON.stringify(arrCart),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    alert("data Saved");
+                    console.log(data);
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+
+        }
+
+</script>
+}

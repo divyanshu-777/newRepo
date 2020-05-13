@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF5567C3-12D0-4189-8564-9BC2CB2EE331}</ProjectGuid>
+    <ProjectGuid>{2D662014-F953-4FDC-BB1B-A7971EACF25D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>PizzaDAL</RootNamespace>
+    <AssemblyName>PizzaDAL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,62 +51,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="menu.cs" />
-    <Compile Include="Domino%27sModel.Context.cs">
+    <Compile Include="DominosModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Domino%27sModel.Context.tt</DependentUpon>
+      <DependentUpon>DominosModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Domino%27sModel.cs">
+    <Compile Include="DominosModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Domino%27sModel.tt</DependentUpon>
+      <DependentUpon>DominosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Domino%27sModel.Designer.cs">
+    <Compile Include="DominosModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Domino%27sModel.edmx</DependentUpon>
+      <DependentUpon>DominosModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ItemsOrder.cs">
-      <DependentUpon>Domino%27sModel.tt</DependentUpon>
+    <Compile Include="ItemOrdered.cs">
+      <DependentUpon>DominosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>DominosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenuDAL.cs" />
+    <Compile Include="Order.cs">
+      <DependentUpon>DominosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Price.cs">
+      <DependentUpon>DominosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tblMenu.cs">
-      <DependentUpon>Domino%27sModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblOrder.cs">
-      <DependentUpon>Domino%27sModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPrice.cs">
-      <DependentUpon>Domino%27sModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserLogin.cs">
-      <DependentUpon>Domino%27sModel.tt</DependentUpon>
+    <Compile Include="User.cs">
+      <DependentUpon>DominosModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Domino%27sModel.edmx">
+    <EntityDeploy Include="DominosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Domino%27sModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DominosModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Domino%27sModel.edmx.diagram">
-      <DependentUpon>Domino%27sModel.edmx</DependentUpon>
+    <None Include="DominosModel.edmx.diagram">
+      <DependentUpon>DominosModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Domino%27sModel.Context.tt">
+    <Content Include="DominosModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Domino%27sModel.edmx</DependentUpon>
-      <LastGenOutput>Domino%27sModel.Context.cs</LastGenOutput>
+      <DependentUpon>DominosModel.edmx</DependentUpon>
+      <LastGenOutput>DominosModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Domino%27sModel.tt">
+    <Content Include="DominosModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Domino%27sModel.edmx</DependentUpon>
-      <LastGenOutput>Domino%27sModel.cs</LastGenOutput>
+      <DependentUpon>DominosModel.edmx</DependentUpon>
+      <LastGenOutput>DominosModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

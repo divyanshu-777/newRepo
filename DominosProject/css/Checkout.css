@@ -1,0 +1,71 @@
+﻿body {
+    background-color:#f2f2f2;
+}
+
+body::-webkit-scrollbar {
+        display: none;
+    }
+
+#billAmount{
+    background-color:white;
+}
+
+a {
+    color: #0066a7;
+    font-weight:700;
+    font-size:15px;
+}
+
+a:hover {
+    text-decoration:none;
+}
+
+ul {
+    line-height: 230%;
+    list-style-type: none;
+    font-weight: 600;
+    padding-left: 20px;
+}
+
+#placeOrder {
+    background-color: #65ab0b;
+    color: white;
+    width: 100%;
+}
+
+#exploreMenu {
+    background-color: #65ab0b;
+    color: white;
+}
+
+#emptyCart {
+    text-align:center;
+    color: #888091;
+    background-color: white;
+    margin: 70px 0px 50px 0px;
+    padding: 20px 0px 50px 0px;
+    height:450px;
+}
+
+    #emptyCart h4 {
+        font-weight:700;
+        font-size:21px;
+        margin-top:10px;
+    }
+
+    #emptyCart p{
+        font-size:15px;
+    }
+
+    #loadCart{
+        color: #2f2d31c9;
+    background-color: white;
+    padding: 7px 17px 16px 22px;
+    text-align:initial;
+    max-height: 450px;
+    overflow-y: scroll;
+    }
+
+      #loadCart::-webkit-scrollbar {
+        display: none;
+    }

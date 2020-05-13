@@ -7,16 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DAL
+namespace PizzaDAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblPrice
+    public partial class ItemOrdered
     {
-        public int ProductId { get; set; }
-        public Nullable<int> MenuId { get; set; }
-        public string Size { get; set; }
-        public Nullable<int> Price { get; set; }
+        public int ItemId { get; set; }
+        public int OrderId { get; set; }
+        public int MenuId { get; set; }
+    
+        public virtual Menu Menu { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

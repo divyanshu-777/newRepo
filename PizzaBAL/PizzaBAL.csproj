@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B3511D1-8F93-40DE-A3F6-90B5BE6D1DB9}</ProjectGuid>
+    <ProjectGuid>{FDA272A2-FFDA-4F5D-A0D3-03D618810B1E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DTO</RootNamespace>
-    <AssemblyName>DTO</AssemblyName>
+    <RootNamespace>PizzaBAL</RootNamespace>
+    <AssemblyName>PizzaBAL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PizzaDAL">
+      <HintPath>..\PizzaDAL\bin\Debug\PizzaDAL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,8 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoginDominos.cs" />
-    <Compile Include="pizzaDto.cs" />
+    <Compile Include="MenuBal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
