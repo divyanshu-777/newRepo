@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PizzaDAL;
+using DTO;
+using AutoMapper;
 namespace PizzaBAL
 {
     public class MenuBal
@@ -18,5 +20,6 @@ namespace PizzaBAL
         {
             return pizzaDAL.GetAllPizzas();
         }
+
     }
 }

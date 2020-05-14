@@ -19,5 +19,11 @@ namespace PizzaDAL
             var pizza = context.Menus.Include(m => m.Prices).ToList();
             return pizza;
         }
+
+        public User CheckUser(User login)
+        {
+             var ur = context.Users.Where(x => x.UserName ==login.UserName && x.Password == login.Password).FirstOrDefault();
+            return ur;
+        }
     }
 }

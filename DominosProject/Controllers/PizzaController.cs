@@ -7,8 +7,11 @@ using System.Web.Http;
 using PizzaBAL;
 using PizzaDAL;
 using DTO;
+using System.Web.Http.Cors;
+
 namespace DominosProject.Controllers
 {
+    [EnableCors("*","*","*")]
     public class PizzaController : ApiController
     {
         [HttpGet]

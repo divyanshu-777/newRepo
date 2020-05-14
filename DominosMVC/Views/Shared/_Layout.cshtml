@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/layout.css">
+    <link rel="icon" href="~/Images/TabLogo.png">
+    <title>Domino&#x27;s ZERO Contact Delivery - Great Taste, Delivered Safe</title>
+    <script src="https://kit.fontawesome.com/e0386161f3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light p-0">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span style="color:white" class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand px-3" href="#"><img src="~/Images/NavbarLogoBlue.jpg" alt="Domino's" id="navbarLogo" /></a>
+
+        <div class="collapse navbar-collapse " id="navbarMenu">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Terms & Conditions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About us</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <i style="color:white" class="fas fa-user-circle fa-2x" id="loginIcon"></i>
+            <span class="navbar-text nav-link" id="accountInfo">
+                My Account<br />
+                @Html.ActionLink("Login", "Login", "LoginPage", new { @Style = "color:White" })
+                |
+                @Html.ActionLink("SignUp", "", "", new { @Style = "color:White" })
+            </span>
+        </div>
+    </nav>
+    <div class="container-fluid body-content p-0">
+        @RenderBody()
+
+    </div>
+    <div class="footer">
+        <div class="container-fluid px-5 pt-5" id="footer">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <ul>
+                        <li>
+                            <img src="/Content/images/icon3.png">
+                        </li>
+                        <li>
+                            <div>
+                                <a href="">Disclaimer</a>
+                                <a href="">Pizza Policy</a>
+                                <a href="">Faq</a>
+                                <a href="">Terms & Conditions</a>
+                                <a href="">Feedback</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <h5>DOWNLOAD APP</h5>
+                    <img src="~/Images/HomePage/play_store.png" alt="" id="playstoreIcon" />
+                    <img src="~/Images/HomePage/app_store.png" alt="" id="appstoreIcon" />
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3" id="copyrightFooter">
+            <p class="my-auto">All Rights Reserved. Copyright © Jubilant FoodWorks Ltd.</p>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#myBtn").click(function () {
+
+                $("#myModal").modal("show");
+            });
+        });
+    </script>
+</body>
+</html>
