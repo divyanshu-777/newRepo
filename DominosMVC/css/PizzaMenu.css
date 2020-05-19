@@ -52,7 +52,7 @@ h6{
 }
 
 #cartFooter {
-    background-color: #eff5fb !important;
+    background-color: white !important;
       position: sticky;
       height:36px;
 }
@@ -90,4 +90,43 @@ h6{
 .bannstyl{
     margin-left:40px;
     margin-top:32px;
+}
+
+.card-img-top{
+    height:150px;
+}
+
+.hgtwdth{
+    width: 338px;
+    height: 500px;
+      overflow-y: scroll;
+       overflow-x: hidden;
+    max-height:500px;
+}
+
+#imghgt{
+    height:70px;
+    border-radius: 5px;
+    width:122%;
+}
+
+.hgtwdth::-webkit-scrollbar {
+        display: none;
+    }
+.mar{
+        margin-left: -18px;
+}
+
+.mt{
+      margin-top: -5px;
+}
+.remove{
+    margin-left:35px;
+}
+.color{
+    color:#09406d;
+}
+
+small{
+    color: darkslategrey;
 }

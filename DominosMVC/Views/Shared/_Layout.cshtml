@@ -45,10 +45,11 @@
         <div>
             <i style="color:white" class="fas fa-user-circle fa-2x" id="loginIcon"></i>
             <span class="navbar-text nav-link" id="accountInfo">
-                My Account<br />
-                @Html.ActionLink("Login", "Login", "LoginPage", new { @Style = "color:White" })
-                |
-                @Html.ActionLink("SignUp", "", "", new { @Style = "color:White" })
+              @if (Session["uname"] != null)
+              {
+                <span>Hello @Session["uname"] <br/>
+                 @Html.ActionLink("Logout", "Logout", "Home", new { @Style = "color:white" })</span>
+              }  
             </span>
         </div>
     </nav>

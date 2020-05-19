@@ -50,7 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapper\AutoMapperBal.cs" />
+    <Compile Include="AutoMapper\LoginMapper.cs" />
+    <Compile Include="AutoMapper\MenuMapper.cs" />
     <Compile Include="MenuBal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserLoginBAL.cs" />

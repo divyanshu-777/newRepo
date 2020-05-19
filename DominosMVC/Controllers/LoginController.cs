@@ -8,25 +8,31 @@ using AutoMapper;
 using System.Web.Security;
 using DominosMVC.Models;
 using PizzaBAL;
+using System.Net.Http;
+
 namespace DominosMVC.Controllers
 {
     public class LoginController : Controller
     {
+        [HttpGet]
         public ActionResult LoginPage()
         {
             return View();
         }
+        /// <summary>
+        /// This method will authenticate user.
+        /// </summary>
+        /// <param name="Dominos"></param>
+        /// <param name="returnurl"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult LoginPage(LoginDominosClass Dominos, string returnurl)
         {
             UserLoginBAL mb = new UserLoginBAL();
             LoginDto ld = new LoginDto();
             var ur = mb.CheckUser(Mapper.Map<LoginDto>(Dominos));
-            //  var data = mb.CheckUser(lg);
             if (ModelState.IsValid)
             {
-
-                // var ur = db.Logins.Where(x => x.username == lg.username && x.password == lg.password).FirstOrDefault();
                 if (ur != null)
                 {
                     FormsAuthentication.SetAuthCookie(Dominos.Username, false);
@@ -35,32 +41,30 @@ namespace DominosMVC.Controllers
                         return Redirect(returnurl);
                     else
                     {
-                        return Redirect("/Home/PizzaMenu");
+                        return Redirect("/Dominos/MenuPage");
                     }
+                }
+                else
+                {
+                    ViewBag.Data = "Username or Password is incorrect!";
                 }
             }
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Register(RegisterDominos Register)
+        {
+            return View();
+        }
+
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             Session["uname"] = null;
             return Redirect("LoginPage");
         }
-        [HttpGet]
-        public ActionResult Signup()
-        {
-            return View();
-        }
-        //[HttpPost]
-        //public ActionResult Signup(Login lg)
-        //{
-
-        //    db.Logins.Add(lg);
-        //    db.SaveChanges();
-        //    return Redirect("Logins");
-
-
-        //}
+        
     }
 }

@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<meta name="viewport" content="width=device-width" />
+<title>Success Page</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+<style>
+    body{
+          overflow-y:hidden;
+          background-color:#2ed051;
+       
+        }
+    .jumbotron{
+        background-color: #2ed051;
+    border-radius: .3rem;
+    /*margin-top: 200px;
+    margin: 105px 215px;*/
+    height: 500px;
+    padding: 50px;
+}
+    .lead {
+        font-size: 3.25rem;
+    }
+    .size{
+        font-size:2.25rem;
+    }
+
+</style>
+<body>
+    <div class="bg">
+<div class="jumbotron text-center">
+    <h1 class="display-1">Thank You!</h1>
+    <h3 class="lead">Your Order is Placed Successfully</h3>
+    <p class="size">Thanks for choosing Domino's. We will deliver your Order hot & Fresh in 30 minutes.</p>
+    <br/>
+    <hr>
+    <p class="lead">
+        <input type="button" class="btn btn-primary btn-lg" value="Continue to Homepage" onclick="window.location= '@Url.Action( "HomePage", "Dominos")'" />
+    </p>
+</div>
+</div>
+</body>

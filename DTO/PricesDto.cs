@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class pizzaDto
+   public class PricesDto
     {
+        public int ProductId { get; set; }
         public int MenuId { get; set; }
-        public string Name { get; set; }
-        public int Price { get; set; }
         public string Size { get; set; }
-        public int Quantity { get; set; }
-        public string Order_By { get; set; }
+        public int PriceOfProduct { get; set; }
     }
 }

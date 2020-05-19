@@ -12,7 +12,7 @@
             <img src="~/Images/cart_empty.png" alt="" />
             <h4>YOUR CART IS EMPTY</h4>
             <P>Please add some items from the menu.</P>
-            <button class="btn" id="exploreMenu" onclick="location.href='/Home/PizzaMenu'" type="button">EXPLORE MENU</button>
+            <button class="btn" id="exploreMenu" onclick="location.href='/Dominos/MenuPage'" type="button">EXPLORE MENU</button>
         </div>
     </div>
     <div class="col-8 p-4" style="display:none">
@@ -44,6 +44,39 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <img style="margin-top:-16px; margin-left:-14px;" src="~/Content/images/loginbann.png" />
+                @*<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>*@
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                        <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                        <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="" checked>Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div> 
+
 
 @section scripts
 {
@@ -82,10 +115,13 @@
                 subTotal += parseInt(JSONcart[element].Price);
                 Gst = parseInt(subTotal * 0.05);
                 GrandTotal = subTotal+ Gst;
-                items += `<div><div class="float-right text-center"><h5> ₹ ${JSONcart[element].Price}</h5>
+                items += `<div class="row mar">
+                                    <div class ="col-sm-2"><img src="${JSONcart[element].image}" id="imghgt"></div>
+                                     <div class ="col-sm-10">
+                    <div class="float-right text-center"><h5> ₹ ${JSONcart[element].Price}</h5>
                 <div class="Quantity">Quantity  <i class="fas fa-minus-square fa-lg" id="${JSONcart[element].ProductId}"></i>
                 ${JSONcart[element].Quantity}  <i class="fas fa-plus-square fa-lg" id="${JSONcart[element].ProductId}"></i></div></div>
-                <h5>${JSONcart[element].Name}</h5><p>${JSONcart[element].Size}</p></div><hr/>`;
+                <h5>${JSONcart[element].Name}</h5><p>${JSONcart[element].Description}</p><p>${JSONcart[element].Size}</p></div></div><hr/>`;
             }
             $('.emptyCartData').html(items);
             $('#subTotal').html("₹ " + subTotal);
@@ -125,6 +161,8 @@
 
         function addPlaceOrderRequest() {
             $("#placeOrder").click(function () {
+
+
                 if ($.isEmptyObject(JSONcart)) {
                     $(this).attr("disabled", "true");
                 }
@@ -136,6 +174,9 @@
 
         function postCart() {
             let arrCart = [];
+            let SessionVar="@Session["uname"]";
+
+            console.log(arrCart);
             for (let element in JSONcart) {
                 arrCart.push(
                     {
@@ -143,18 +184,20 @@
                         "Name": JSONcart[element].Name,
                         "Price": parseInt(JSONcart[element].Price),
                         "Size": JSONcart[element].Size,
-                        "Quantity": parseInt(JSONcart[element].Quantity)
-
+                        "Quantity": parseInt(JSONcart[element].Quantity),
+                        "Order_By": SessionVar
                     });
+
             }
+           // console.log(@Session["uname"]);
 
             $.ajax({
-                url: 'http://localhost:53612/api/Pizza/',
+                url: 'http://localhost:53612/api/Pizza/PostOrder',
                 method: 'Post',
                 data: JSON.stringify(arrCart),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    alert("data Saved");
+                    document.location.href='@Url.Action( "SuccessPage", "Dominos")';
                     console.log(data);
                 },
                 error: function (err) {

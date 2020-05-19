@@ -13,10 +13,10 @@ namespace PizzaDAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DominosEntities : DbContext
+    public partial class DominosEntities2 : DbContext
     {
-        public DominosEntities()
-            : base("name=DominosEntities")
+        public DominosEntities2()
+            : base("name=DominosEntities2")
         {
         }
     

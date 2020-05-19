@@ -21,7 +21,7 @@ namespace PizzaDAL
         }
     
         public int OrderId { get; set; }
-        public byte[] OrderTime { get; set; }
+        public System.DateTime OrderTime { get; set; }
         public string OrderedBy { get; set; }
         public int OrderAmount { get; set; }
     

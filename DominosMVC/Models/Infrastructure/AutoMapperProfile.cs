@@ -13,7 +13,6 @@ namespace DominosMVCProject.Models.Infrastructure
         public AutoMapperProfile()
         {
             CreateMap<LoginDominosClass, LoginDto>();
-            CreateMap<LoginDto, PizzaDAL.User>();
         }
     }
 }

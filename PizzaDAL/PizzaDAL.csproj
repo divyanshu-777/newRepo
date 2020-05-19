@@ -51,66 +51,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DominosModel.Context.cs">
+    <Compile Include="DomiModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DominosModel.Context.tt</DependentUpon>
+      <DependentUpon>DomiModels.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DominosModel.cs">
+    <Compile Include="DomiModels.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DominosModel.tt</DependentUpon>
+      <DependentUpon>DomiModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="DominosModel.Designer.cs">
+    <Compile Include="DomiModels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DominosModel.edmx</DependentUpon>
+      <DependentUpon>DomiModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="ItemOrdered.cs">
-      <DependentUpon>DominosModel.tt</DependentUpon>
+      <DependentUpon>DomiModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
-      <DependentUpon>DominosModel.tt</DependentUpon>
+      <DependentUpon>DomiModels.tt</DependentUpon>
     </Compile>
     <Compile Include="MenuDAL.cs" />
     <Compile Include="Order.cs">
-      <DependentUpon>DominosModel.tt</DependentUpon>
+      <DependentUpon>DomiModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Price.cs">
-      <DependentUpon>DominosModel.tt</DependentUpon>
+      <DependentUpon>DomiModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs">
-      <DependentUpon>DominosModel.tt</DependentUpon>
+      <DependentUpon>DomiModels.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="DominosModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DominosModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="DominosModel.edmx.diagram">
-      <DependentUpon>DominosModel.edmx</DependentUpon>
+    <EntityDeploy Include="DomiModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DomiModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DomiModels.edmx.diagram">
+      <DependentUpon>DomiModels.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DominosModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DominosModel.edmx</DependentUpon>
-      <LastGenOutput>DominosModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DominosModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DominosModel.edmx</DependentUpon>
-      <LastGenOutput>DominosModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="DomiModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DomiModels.edmx</DependentUpon>
+      <LastGenOutput>DomiModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomiModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DomiModels.edmx</DependentUpon>
+      <LastGenOutput>DomiModels.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

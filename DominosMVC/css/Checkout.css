@@ -69,3 +69,29 @@ ul {
       #loadCart::-webkit-scrollbar {
         display: none;
     }
+
+#imghgt{
+   height: 90px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+
+      .modal-content{
+     width:82%;
+ }
+  .modal-footer {
+    background-color: #f9f9f9;
+  }
+
+ 
+  .modal-header{
+      height:199px;
+  }
+  .modal-body{
+      background-color: mintcream;
+  }
+  .modal-dialog{
+      margin-right:-34px;
+  }

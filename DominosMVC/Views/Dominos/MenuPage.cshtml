@@ -15,7 +15,7 @@
 <div>
     <br />
     <div class="col-3" id="cart">
-        <div class="card">
+        <div class="card hgtwdth">
             <div id="emptyCart">
                 <img src="@Url.Content("~/Content/images/cart.png")" alt="" id="cartImg" class="ml-auto">
                 <div class="card-body">
@@ -69,12 +69,12 @@
         // let JSONcart = JSON.parse(localStorage.getItem("cart"));
         let JSONcart = {};
         $(document).ready(function () {
-            $.getJSON('http://localhost:53612/api/Pizza/', function (data) {
+            $.getJSON('http://localhost:53612/api/Pizza/GetPizza', function (data) {
                 console.log(data);
                 let card;
                 for (let i in data) {
                     card = `<div class="card col-lg-3 col-md-6 p-0 mx-lg-4 mx-sm-auto mx-md-auto my-3" id ="card-${data[i].MenuId}">
-                        <img src="@Url.Content("~/Content/images/margherita.webp.jpeg")" class="card-img-top" alt="...">
+                        <img src="${data[i].Image}" class="card-img-top " alt="...">
                         <span class="price">₹${data[i].Prices[0].PriceOfProduct}</span>
                         <div class="card-body p-2">
                             <h6 class="mt-n4 pizzaName">${data[i].MenuName}</h6>
@@ -90,7 +90,8 @@
                                     <button type="button" class="btn btn-outline-success btn-sm addToCart mt-2"
                                     productid="${data[i].Prices[0].ProductId}" pizzaName="${data[i].MenuName}"
                                     price="${data[i].Prices[0].PriceOfProduct}" size="${data[i].Prices[0].Size}"
-                                    menuid="${data[i].MenuId}" Description="${data[i].Description}">ADD TO CART</button>
+                                    menuid="${data[i].MenuId}" Description="${data[i].Description}" image="${data[i].Image}">
+                                    ADD TO CART</button>
                                 </div>
                         </div>
                     </div>`;
@@ -114,7 +115,8 @@
                 let name = $(this).attr("pizzaname");
                 let price = $(this).attr("price");
                 let size = $(this).attr("size");
-                let Description= $(this).attr("Description")
+                let Description = $(this).attr("Description")
+                let image= $(this).attr("image")
                 if ( JSONcart[productid] == undefined) {
                     console.log("new product");
                     JSONcart[productid]={
@@ -123,7 +125,8 @@
                     "Name": name,
                     "Price": price,
                     "Size": size,
-                    "Description":Description,
+                    "Description": Description,
+                    "image":image,
                     "Quantity":1
                 };
                 }
@@ -136,6 +139,7 @@
                     "Price": price,
                     "Size": size,
                     "Description": Description,
+                    "image": image,
                     "Quantity": JSONcart[productid].Quantity + 1
                 };
                 }
@@ -174,11 +178,16 @@
                 lineTotal = parseInt(JSONcart[element].Quantity) * parseInt(JSONcart[element].Price);
                 subTotal += lineTotal;
                 newsubTotal = parseInt(JSONcart[element].Quantity) * parseInt(JSONcart[element].Price);
-                content += `<div>
-                            <h6>${JSONcart[element].Name}</h6><button class="btn btn-danger btn-sm float-right remove" id="${JSONcart[element].ProductId}">Remove</button>
-                            <p class ="mb-2">${JSONcart[element].Size}
-                            ₹${newsubTotal}</p><div>Quantity ${JSONcart[element].Quantity}</div><hr/>
-                            </div>`;
+                content += `<div class="row mar">
+                                    <div class ="col-sm-2"><img src="${JSONcart[element].image}" id="imghgt">
+                                    <br/></br>
+                                    <div class="mt"><small>Quantity ${JSONcart[element].Quantity}</small></div>
+                                    </div>
+                           <div class ="col-sm-6"> <h6>${JSONcart[element].Name}</h6>
+                           <p class ="mb-2"><small>${JSONcart[element].Description}</small></p>
+                            <p class ="ml-2 color">${JSONcart[element].Size}
+                            ₹${newsubTotal} <button class ="btn btn-danger btn-sm  remove" id="${JSONcart[element].ProductId}">Remove</button></p></div>
+                            </div><hr/>`;
                 newsubTotal = 0;
             }
             content += `</div><div id="cartFooter"><h4 class="px-2 m-0">Subtotal<span class="float-right">₹${subTotal}</span></h4></div>

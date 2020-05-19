@@ -1,0 +1,131 @@
+﻿@model DominosMVC.Models.LoginDominosClass
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<meta name="viewport" content="width=device-width" />
+<title>LoginPage</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<style>
+    * {
+        color: white;
+    }
+
+    .bg {
+        background: url('https://cdn.static-zoutons.com/images/originals/blog/DOMINOS_FREECHARGE_OFFER_BLOG_BANNER3_1578642317.jpg') no-repeat;
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+    }
+
+    .bor {
+        border: 0px solid;
+        padding: 50px 60px;
+        margin-top: 30vh;
+        box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    }
+
+    #exampleInputPassword1, #exampleInputEmail1 {
+        margin-left: 25px;
+    }
+
+    .checkbox {
+        margin-left: 40px;
+        color: aliceblue;
+    }
+
+    .btn-success {
+        margin-left: 60px;
+        width: 100px;
+    }
+
+    .btn-primary {
+        width: 96px;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid bg">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+
+                <div class="form-horizontal bor">
+                    @*<h4 style="color:#100303">@ViewBag.Data</h4>*@
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { id = "exampleInputEmail1", @placeholder = "Username", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { id = "exampleInputPassword1", @placeholder = "password", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { })
+                        </div>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-success btn-group-lg">Login</button> <b>OR</b>
+                            <button type="submit" class="btn btn-primary btn-group-lg sigbtn" id="signupbtn">Sign Up</button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('#signupbtn').click(function () {
+
+            let obj = {};
+            obj.username = $('#exampleInputEmail1').val();
+            obj.password = $('#exampleInputPassword1').val();
+
+            alert("button clicked");
+            $.ajax({
+                url: 'http://localhost:53612/api/Pizza/SignUp',
+                method: 'Post',
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    alert("data Saved" + data);
+                    console.log(data);
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+    });
+
+</script>
+
+

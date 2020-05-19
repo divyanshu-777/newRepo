@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DominosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DominosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ItemOrdered">
           <Key>
             <PropertyRef Name="ItemId" />
@@ -12,6 +12,7 @@
           <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
@@ -20,15 +21,15 @@
           <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MenuName" Type="nvarchar" MaxLength="127" />
           <Property Name="Category" Type="nvarchar" MaxLength="127" />
-          <Property Name="Description" Type="varchar(max)" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Description" Type="varchar" MaxLength="127" />
+          <Property Name="Image" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OrderTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="OrderTime" Type="datetime" Nullable="false" />
           <Property Name="OrderedBy" Type="nvarchar" MaxLength="127" />
           <Property Name="OrderAmount" Type="int" Nullable="false" />
         </EntityType>
@@ -119,7 +120,8 @@
             <End Role="Price" EntitySet="Price" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DominosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -130,6 +132,7 @@
           <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
           <NavigationProperty Name="Menu" Relationship="Self.FK__ItemOrder__MenuI__182C9B23" FromRole="ItemOrdered" ToRole="Menu" />
           <NavigationProperty Name="Order" Relationship="Self.FK__ItemOrder__Order__1920BF5C" FromRole="ItemOrdered" ToRole="Order" />
         </EntityType>
@@ -140,17 +143,17 @@
           <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MenuName" Type="String" MaxLength="127" FixedLength="false" Unicode="true" />
           <Property Name="Category" Type="String" MaxLength="127" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="127" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ItemOrdereds" Relationship="Self.FK__ItemOrder__MenuI__182C9B23" FromRole="Menu" ToRole="ItemOrdered" />
           <NavigationProperty Name="Prices" Relationship="Self.FK__Price__MenuId__1B0907CE" FromRole="Menu" ToRole="Price" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderTime" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="OrderedBy" Type="String" MaxLength="127" FixedLength="false" Unicode="true" />
           <Property Name="OrderAmount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ItemOrdereds" Relationship="Self.FK__ItemOrder__Order__1920BF5C" FromRole="Order" ToRole="ItemOrdered" />
@@ -164,6 +167,7 @@
           <Property Name="MenuId" Type="Int32" Nullable="false" />
           <Property Name="Size" Type="String" MaxLength="127" FixedLength="false" Unicode="true" />
           <Property Name="PriceOfProduct" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK__Price__MenuId__1B0907CE" FromRole="Price" ToRole="Menu" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -221,7 +225,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DominosEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DominosEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ItemOrdereds" EntityType="Self.ItemOrdered" />
           <EntitySet Name="Menus" EntityType="Self.Menu" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -249,24 +253,25 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DominosModelStoreContainer" CdmEntityContainer="DominosEntities">
+        <EntityContainerMapping StorageEntityContainer="DominosModelStoreContainer" CdmEntityContainer="DominosEntities2">
           <EntitySetMapping Name="ItemOrdereds">
             <EntityTypeMapping TypeName="DominosModel.ItemOrdered">
               <MappingFragment StoreEntitySet="ItemOrdered">
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="DominosModel.Menu">
               <MappingFragment StoreEntitySet="Menu">
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="MenuId" ColumnName="MenuId" />
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

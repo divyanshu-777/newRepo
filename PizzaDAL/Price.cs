@@ -18,5 +18,7 @@ namespace PizzaDAL
         public int MenuId { get; set; }
         public string Size { get; set; }
         public int PriceOfProduct { get; set; }
+    
+        public virtual Menu Menu { get; set; }
     }
 }
