@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cart.cs">
+      <DependentUpon>DomiModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="DomiModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,6 +72,7 @@
     <Compile Include="ItemOrdered.cs">
       <DependentUpon>DomiModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="JoinClassDAL.cs" />
     <Compile Include="Menu.cs">
       <DependentUpon>DomiModels.tt</DependentUpon>
     </Compile>

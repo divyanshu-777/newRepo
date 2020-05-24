@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartDTO.cs" />
+    <Compile Include="JoinClassDto.cs" />
     <Compile Include="LoginDto.cs" />
     <Compile Include="MenuDto.cs" />
     <Compile Include="pizzaDto.cs" />

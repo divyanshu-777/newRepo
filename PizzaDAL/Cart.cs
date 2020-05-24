@@ -12,21 +12,16 @@ namespace PizzaDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Price
+    public partial class Cart
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Price()
-        {
-            this.Carts = new HashSet<Cart>();
-        }
-    
-        public int ProductId { get; set; }
+        public int CartId { get; set; }
         public int MenuId { get; set; }
-        public string Size { get; set; }
-        public int PriceOfProduct { get; set; }
+        public int Quantity { get; set; }
+        public string OrderedBy { get; set; }
+        public int ProductId { get; set; }
     
         public virtual Menu Menu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart> Carts { get; set; }
+        public virtual User User { get; set; }
+        public virtual Price Price { get; set; }
     }
 }

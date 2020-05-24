@@ -39,7 +39,7 @@ namespace PizzaBAL
             {
                 ListMenuDto.Add(pizzaMapper.menuMapper(item));
             }
-            return ListMenuDto; 
+            return ListMenuDto;
         }
 
         /// <summary>
@@ -65,7 +65,60 @@ namespace PizzaBAL
             pizzaDAL.SaveOrder(orderObj, ListitemOrdered);
         }
 
+        /// <summary>
+        ///  This method will call data layer method 
+        ///  for adding cart data into database.
+        /// </summary>
+        /// <param name="cartObj"></param>
+        public void AddToCart(CartDTO cartObj)
+        {
 
+            pizzaDAL.AddToCart(pizzaMapper.cartMapper(cartObj));
+        }
 
+        /// <summary>
+        ///  This method will call data layer method 
+        ///  for displaying all cart data present in DB.
+        /// </summary>
+        /// <returns></returns>
+        public List<JoinClassDto> GetCartDatas()
+        {
+            var data = pizzaDAL.GetCartData();
+            List<JoinClassDto> JoinClassObj = new List<JoinClassDto>();
+            foreach (var items in data)
+            {
+                JoinClassObj.Add(pizzaMapper.JoinMapper(items));
+            }
+            return JoinClassObj;
+        }
+
+        /// <summary>
+        ///  This method will call data layer method 
+        ///  for updating Cart item into DB.
+        /// </summary>
+        /// <param name="id"></param>
+        public void UpdateCartData(int id)
+        {
+            pizzaDAL.UpdateCart(id);
+        }
+
+        /// <summary>
+        ///  This method will call data layer method 
+        ///  for decrementing cart item into DB.
+        /// </summary>
+        /// <param name="id"></param>
+        public void DecreaseCartData(int id)
+        {
+            pizzaDAL.DecreaseCartData(id);
+        }
+
+        /// <summary>
+        ///  This method will call data layer method 
+        ///  for removing all items from cart in DB.
+        /// </summary>
+        public void EmptyCart()
+        {
+            pizzaDAL.EmptyCart();
+        }
     }
 }

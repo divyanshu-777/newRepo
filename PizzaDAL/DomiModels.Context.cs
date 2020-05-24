@@ -30,5 +30,6 @@ namespace PizzaDAL
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
     }
 }

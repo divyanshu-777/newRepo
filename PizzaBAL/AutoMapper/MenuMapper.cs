@@ -11,7 +11,7 @@ namespace PizzaBAL.AutoMapper
 {
     /// <summary>
     /// This class is responsible for mapping 
-    /// two diffrent classes which are in diffrent
+    /// two different classes which are in different
     /// library.
     /// </summary>
     class MenuMapper : Profile
@@ -35,6 +35,43 @@ namespace PizzaBAL.AutoMapper
         }
 
 
+        /// <summary>
+        /// This method will map CartDto class with
+        /// cart class. 
+        /// </summary>
+        /// <param name="cartObj"></param>
+        /// <returns></returns>
+        public Cart cartMapper(CartDTO cartObj)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<CartDTO, Cart>();
+                
+            });
+            var mapper = configuration.CreateMapper();
+            var cartDtoObj = mapper.Map<Cart>(cartObj);
+            return cartDtoObj;
+        }
+
+
+        /// <summary>
+        /// This method will map JoinclassDal class
+        /// to JoinclassDto.
+        /// </summary>
+        /// <param name="joinObj"></param>
+        /// <returns></returns>
+        public JoinClassDto JoinMapper(JoinClassDAL joinObj)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<JoinClassDAL, JoinClassDto>();
+            });
+            var mapper = configuration.CreateMapper();
+            var joinDtoObj = mapper.Map<JoinClassDto>(joinObj);
+            return joinDtoObj;
+        }
+
+        
 
     }
 }

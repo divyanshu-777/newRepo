@@ -66,11 +66,12 @@
 @section scripts
     {
     <script>
-        // let JSONcart = JSON.parse(localStorage.getItem("cart"));
-        let JSONcart = {};
+   
         $(document).ready(function () {
+   
             $.getJSON('http://localhost:53612/api/Pizza/GetPizza', function (data) {
                 console.log(data);
+                displayCart();
                 let card;
                 for (let i in data) {
                     card = `<div class="card col-lg-3 col-md-6 p-0 mx-lg-4 mx-sm-auto mx-md-auto my-3" id ="card-${data[i].MenuId}">
@@ -95,7 +96,7 @@
                                 </div>
                         </div>
                     </div>`;
-                    console.log(data[i].Prices.length);
+
                     if (data[i].Prices.length == 1)
                         $('#pizzaMania').append(card);
                     else if(data[i].Category == "Veg")
@@ -105,48 +106,73 @@
                 }
                 addToCartEvent();
                 changeSizeEvent();
-                displayCart();
             });
         });
-        function addToCartEvent(data) {
+        function displayCart() {
+            $("#emptyCart").hide();
+            $("#loadedCart").remove();
+            let content = `<div  id="loadedCart"><div class ="card-body">`;
+            let subTotal = 0;
+            let lineTotal = 0;
+            let newsubTotal = 0;
+
+            $.getJSON('http://localhost:53612/api/Pizza/GetAllCartData', function (data) {
+
+                if (data == "") {
+                    $("#emptyCart").show();
+                    $("#loadedCart").remove();
+                    return;
+                }
+                console.log(data);
+                for (let x in data) {
+                    lineTotal = parseInt(data[x].Quantity) * parseInt(data[x].Price);
+                    subTotal += lineTotal;
+                    newsubTotal = parseInt(data[x].Quantity) * parseInt(data[x].Price);
+                    content += `<div class="row mar">
+                                    <div class ="col-sm-2"><img src="${data[x].Image}" id="imghgt">
+                                    <br/></br>
+                                    <div class ="mt"><small>Quantity ${data[x].Quantity}</small></div>
+                                    </div>
+                           <div class ="col-sm-6"> <h6>${data[x].MenuName}</h6>
+                           <p class ="mb-2"><small>${data[x].Description}</small></p>
+                            <p class ="ml-2 color">${data[x].Size}
+                            ₹${newsubTotal} <button class ="btn btn-danger btn-sm  remove" id="${data[x].ProductId}">Remove</button></p></div>
+                            </div><hr/>`;
+                    newsubTotal = 0;
+                }
+                content += `</div><div id="cartFooter"><h4 class="px-2 m-0">Subtotal<span class="float-right">₹${subTotal}</span></h4></div>
+                        <button class="btn btn-lg btn-success" id="checkoutBtn">Checkout</button></div>`
+                $('#cart').find('.card').append(content);
+                addRemoveEvent();
+                checkOutPage();
+            });
+        }
+
+        function addToCartEvent() {
             $(".addToCart").click(function () {
                 let menuid = $(this).attr("menuid");
                 let productid = $(this).attr("productid");
-                let name = $(this).attr("pizzaname");
-                let price = $(this).attr("price");
-                let size = $(this).attr("size");
-                let Description = $(this).attr("Description")
-                let image= $(this).attr("image")
-                if ( JSONcart[productid] == undefined) {
-                    console.log("new product");
-                    JSONcart[productid]={
-                    "MenuId": menuid,
-                    "ProductId": productid,
-                    "Name": name,
-                    "Price": price,
-                    "Size": size,
-                    "Description": Description,
-                    "image":image,
-                    "Quantity":1
-                };
+                let username= "@Request.Cookies["Username"].Value";
+                let obj = {
+                    MenuId: menuid,
+                    ProductId: productid,
+                    OrderedBy: username,
+                    Quantity:1
                 }
-                else {
-                    console.log("old product");
-                    JSONcart[productid]={
-                    "MenuId": menuid,
-                    "ProductId": productid,
-                    "Name": name,
-                    "Price": price,
-                    "Size": size,
-                    "Description": Description,
-                    "image": image,
-                    "Quantity": JSONcart[productid].Quantity + 1
-                };
-                }
-                localStorage.setItem("cart", JSON.stringify(JSONcart));
-                console.log(JSONcart);
-                //console.log(menuid + " | " + productid + " | " + name + " | " + price + " | " + size);
-                displayCart();
+   
+                $.ajax({
+                    url: 'http://localhost:53612/api/Pizza/AddCart',
+                    method: 'Post',
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        displayCart();
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                });
+                
             });
         }
         function changeSizeEvent() {
@@ -161,41 +187,8 @@
                 $(this).closest('.card').children(".price")[0].innerHTML = selectedPrice;
             });
         }
-        function displayCart() {
-            if ($.isEmptyObject(JSONcart)) {
-                $("#emptyCart").show();
-                $("#loadedCart").remove();
-                return;
-            }
-            $("#emptyCart").hide();
-            $("#loadedCart").remove();
-            //$('#cart').find(".card").empty();
-            let content = `<div  id="loadedCart"><div class ="card-body">`;
-            let subTotal = 0;
-            let lineTotal = 0;
-            let newsubTotal = 0;
-            for (let element in JSONcart) {
-                lineTotal = parseInt(JSONcart[element].Quantity) * parseInt(JSONcart[element].Price);
-                subTotal += lineTotal;
-                newsubTotal = parseInt(JSONcart[element].Quantity) * parseInt(JSONcart[element].Price);
-                content += `<div class="row mar">
-                                    <div class ="col-sm-2"><img src="${JSONcart[element].image}" id="imghgt">
-                                    <br/></br>
-                                    <div class="mt"><small>Quantity ${JSONcart[element].Quantity}</small></div>
-                                    </div>
-                           <div class ="col-sm-6"> <h6>${JSONcart[element].Name}</h6>
-                           <p class ="mb-2"><small>${JSONcart[element].Description}</small></p>
-                            <p class ="ml-2 color">${JSONcart[element].Size}
-                            ₹${newsubTotal} <button class ="btn btn-danger btn-sm  remove" id="${JSONcart[element].ProductId}">Remove</button></p></div>
-                            </div><hr/>`;
-                newsubTotal = 0;
-            }
-            content += `</div><div id="cartFooter"><h4 class="px-2 m-0">Subtotal<span class="float-right">₹${subTotal}</span></h4></div>
-                        <button class="btn btn-lg btn-success" id="checkoutBtn">Checkout</button></div>`
-            $('#cart').find('.card').append(content);
-            addRemoveEvent();
-            checkOutPage();
-        }
+        
+
         function checkOutPage() {
             $('#checkoutBtn').click(function () {
                 document.location = '@Url.Action("Checkout","Dominos")';
@@ -205,14 +198,18 @@
         function addRemoveEvent() {
             $('.remove').click(function () {
                 let productid = $(this).attr("id");
-                if (JSONcart[productid].Quantity > 1) {
-                    JSONcart[productid].Quantity = JSONcart[productid].Quantity - 1;
-                }
-                else {
-                    delete JSONcart[productid];
-                }
-                localStorage.setItem("cart", JSON.stringify(JSONcart));
-                displayCart();
+               
+                $.ajax({
+                    url: 'http://localhost:53612/api/Pizza/DecreaseItemFromCart/' + productid,
+                    method: 'Delete',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        displayCart();
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                });
             });
         }
     </script>

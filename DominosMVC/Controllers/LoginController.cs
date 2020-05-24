@@ -36,7 +36,7 @@ namespace DominosMVC.Controllers
                 if (ur != null)
                 {
                     FormsAuthentication.SetAuthCookie(Dominos.Username, false);
-                    Session["uname"] = Dominos.Username;
+                    Response.Cookies["Username"].Value= Dominos.Username;
                     if (returnurl != null)
                         return Redirect(returnurl);
                     else
@@ -62,7 +62,7 @@ namespace DominosMVC.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            Session["uname"] = null;
+            Response.Cookies["Username"].Value = null;
             return Redirect("LoginPage");
         }
         

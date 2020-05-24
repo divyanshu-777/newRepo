@@ -8,6 +8,8 @@ body::-webkit-scrollbar {
 
 #billAmount{
     background-color:white;
+    margin-right: 50px;
+}
 }
 
 a {

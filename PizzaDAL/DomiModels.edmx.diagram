@@ -5,15 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d335d5b5dc1a49e69e39843159b9fdee" Name="Diagram1">
-        <EntityTypeShape EntityType="DominosModel.ItemOrdered" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DominosModel.Menu" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DominosModel.Order" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DominosModel.Price" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DominosModel.User" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.ItemOrdered" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.Menu" Width="1.5" PointX="2" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.Order" Width="1.5" PointX="3.375" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.Price" Width="1.5" PointX="5.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.User" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="DominosModel.FK__ItemOrder__MenuI__182C9B23" ManuallyRouted="false" />
         <AssociationConnector Association="DominosModel.FK__ItemOrder__Order__1920BF5C" ManuallyRouted="false" />
         <AssociationConnector Association="DominosModel.FK__Price__MenuId__1B0907CE" ManuallyRouted="false" />
         <AssociationConnector Association="DominosModel.FK__Order__OrderedBy__1A14E395" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DominosModel.Cart" Width="1.5" PointX="8.375" PointY="3" />
+        <AssociationConnector Association="DominosModel.FK__Cart__MenuId__3E52440B" />
+        <AssociationConnector Association="DominosModel.FK__Cart__OrderedBy__3F466844" />
+        <AssociationConnector Association="DominosModel.FK__Cart__ProductId__403A8C7D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
