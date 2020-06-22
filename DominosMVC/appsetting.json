@@ -1,0 +1,11 @@
+﻿{
+"appSettings": {
+"Nexmo.UserAgent": "NEXMOQUICKSTART/1.0",
+"Nexmo.Url.Rest": "https://rest.nexmo.com",
+"Nexmo.Url.Api": "https://api.nexmo.com",
+"Nexmo.api_key": "78b2ece6",
+"Nexmo.api_secret": "YkzY0b82EtMekuKl",
+"NEXMO_FROM_NUMBER": "919968243777"
+}
+}
+ 

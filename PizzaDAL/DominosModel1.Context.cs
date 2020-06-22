@@ -13,10 +13,10 @@ namespace PizzaDAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DominosEntities2 : DbContext
+    public partial class DominosEntities5 : DbContext
     {
-        public DominosEntities2()
-            : base("name=DominosEntities2")
+        public DominosEntities5()
+            : base("name=DominosEntities5")
         {
         }
     
@@ -25,11 +25,12 @@ namespace PizzaDAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<ItemOrdered> ItemOrdereds { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
     }
 }

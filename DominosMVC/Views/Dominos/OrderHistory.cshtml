@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/OrderHistory.css" rel="stylesheet" />
+
+<div class="col-7 mx-auto" id="emptyCart">
+    <div class="emptyCartData">
+        <img src="~/Images/cart_empty.png" alt="" />
+        <h4>NO ORDER AVAILABLE</h4>
+        <P>Please Order some items from the menu.</P>
+        <button class="btn" id="exploreMenu" onclick="location.href='/Dominos/MenuPage'" type="button">EXPLORE MENU</button>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            displayOrderHistory();
+        });
+
+        function displayOrderHistory() {
+
+            var username = sessionStorage.getItem('username');
+            $.ajax({
+                url: 'http://localhost:53612/api/Pizza/OrderHistoryData',
+                method: 'Get',
+                contentType: "application/json; charset=utf-8",
+                data: { 'Username': username },
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                },
+                success: function (data) {
+                    console.log(data);
+                    if(data =="")
+                    {
+                        $('#emptyCart').show();
+                        return;
+                    }
+
+
+                }
+            });
+        }
+        </script>
+
+       

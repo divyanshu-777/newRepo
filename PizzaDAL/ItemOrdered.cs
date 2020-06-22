@@ -16,10 +16,12 @@ namespace PizzaDAL
     {
         public int ItemId { get; set; }
         public int OrderId { get; set; }
-        public int MenuId { get; set; }
+        public Nullable<int> ProductId { get; set; }
+        public Nullable<int> MenuId { get; set; }
         public Nullable<int> Quantity { get; set; }
     
         public virtual Menu Menu { get; set; }
         public virtual Order Order { get; set; }
+        public virtual Price Price { get; set; }
     }
 }

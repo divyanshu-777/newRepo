@@ -59,11 +59,11 @@ namespace DominosProject
             //    appId: "",
             //    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1016547089526-j392b28eu516vak4994d7tubgvq7b3t1.apps.googleusercontent.com",
+                ClientSecret = "pUyijLtI3fytFylsNe-vcsQL"
+            });
         }
     }
 }

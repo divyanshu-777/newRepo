@@ -71,7 +71,34 @@ namespace PizzaBAL.AutoMapper
             return joinDtoObj;
         }
 
-        
+        public OrderHistoryDto JoinMapperOrderHistory(OrderHistoryDAL joinObj)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<OrderHistoryDAL, OrderHistoryDto>();
+            });
+            var mapper = configuration.CreateMapper();
+            var joinDtoObj = mapper.Map<OrderHistoryDto>(joinObj);
+            return joinDtoObj;
+        }
+
+        public OrderDTO MapperOrderHistory(Order ordObj)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Order, OrderDTO>();
+                cfg.CreateMap<ItemOrdered, ItemOrderedDTO>();
+                cfg.CreateMap<Menu, newMenuDto>();
+                cfg.CreateMap<Price, PricesDto>();
+               // cfg.CreateMap<User, UserDto>();
+                
+
+            });
+            var mapper = configuration.CreateMapper();
+            var DtoObj = mapper.Map<OrderDTO>(ordObj);
+            return DtoObj;
+        }
+
 
     }
 }

@@ -68,13 +68,22 @@
     <script>
    
         $(document).ready(function () {
-   
-            $.getJSON('http://localhost:53612/api/Pizza/GetPizza', function (data) {
-                console.log(data);
-                displayCart();
-                let card;
-                for (let i in data) {
-                    card = `<div class="card col-lg-3 col-md-6 p-0 mx-lg-4 mx-sm-auto mx-md-auto my-3" id ="card-${data[i].MenuId}">
+
+            if (sessionStorage.getItem('tokens') == null)
+            {
+                document.location.href = "/JwtAuthentication/Index";
+            }
+  
+            $.ajax({
+                url:'http://localhost:53612/api/Pizza/GetPizza',
+                method: 'Get',
+                headers:{
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                 },
+                success: function (data) {
+                    let card;
+                    for (let i in data) {
+                        card = `<div class="card col-lg-3 col-md-6 p-0 mx-lg-4 mx-sm-auto mx-md-auto my-3" id ="card-${data[i].MenuId}">
                         <img src="${data[i].Image}" class="card-img-top " alt="...">
                         <span class="price">₹${data[i].Prices[0].PriceOfProduct}</span>
                         <div class="card-body p-2">
@@ -84,10 +93,10 @@
                                 <div class="mb-2">
                                     <small class="card-text">Size</small></br>
                                     <select>`;
-                    for (let j in data[i].Prices) {
-                        card += `<option price="${data[i].Prices[j].PriceOfProduct}" size="${data[i].Prices[j].Size}" value="${data[i].Prices[j].ProductId}">${data[i].Prices[j].Size} ₹${data[i].Prices[j].PriceOfProduct}</option>`;
-                    }
-                        card+=      `</select>
+                        for (let j in data[i].Prices) {
+                            card += `<option price="${data[i].Prices[j].PriceOfProduct}" size="${data[i].Prices[j].Size}" value="${data[i].Prices[j].ProductId}">${data[i].Prices[j].Size} ₹${data[i].Prices[j].PriceOfProduct}</option>`;
+                        }
+                        card += `</select>
                                     <button type="button" class="btn btn-outline-success btn-sm addToCart mt-2"
                                     productid="${data[i].Prices[0].ProductId}" pizzaName="${data[i].MenuName}"
                                     price="${data[i].Prices[0].PriceOfProduct}" size="${data[i].Prices[0].Size}"
@@ -97,17 +106,21 @@
                         </div>
                     </div>`;
 
-                    if (data[i].Prices.length == 1)
-                        $('#pizzaMania').append(card);
-                    else if(data[i].Category == "Veg")
-                        $("#vegPizzas").append(card);
-                    else
-                        $("#nonVegPizzas").append(card);
+                        if (data[i].Prices.length == 1)
+                            $('#pizzaMania').append(card);
+                        else if (data[i].Category == "Veg")
+                            $("#vegPizzas").append(card);
+                        else
+                            $("#nonVegPizzas").append(card);
+                    }
+                    displayCart();
+                    addToCartEvent();
+                    changeSizeEvent();
                 }
-                addToCartEvent();
-                changeSizeEvent();
             });
         });
+
+
         function displayCart() {
             $("#emptyCart").hide();
             $("#loadedCart").remove();
@@ -116,19 +129,24 @@
             let lineTotal = 0;
             let newsubTotal = 0;
 
-            $.getJSON('http://localhost:53612/api/Pizza/GetAllCartData', function (data) {
-
-                if (data == "") {
-                    $("#emptyCart").show();
-                    $("#loadedCart").remove();
-                    return;
-                }
-                console.log(data);
-                for (let x in data) {
-                    lineTotal = parseInt(data[x].Quantity) * parseInt(data[x].Price);
-                    subTotal += lineTotal;
-                    newsubTotal = parseInt(data[x].Quantity) * parseInt(data[x].Price);
-                    content += `<div class="row mar">
+            $.ajax({
+                url:'http://localhost:53612/api/Pizza/GetAllCartData',
+                method: 'Get',
+                headers:{
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                },
+                success: function (data) {
+                    if (data == "") {
+                        $("#emptyCart").show();
+                        $("#loadedCart").remove();
+                        return;
+                    }
+                    console.log(data);
+                    for (let x in data) {
+                        lineTotal = parseInt(data[x].Quantity) * parseInt(data[x].Price);
+                        subTotal += lineTotal;
+                        newsubTotal = parseInt(data[x].Quantity) * parseInt(data[x].Price);
+                        content += `<div class="row mar">
                                     <div class ="col-sm-2"><img src="${data[x].Image}" id="imghgt">
                                     <br/></br>
                                     <div class ="mt"><small>Quantity ${data[x].Quantity}</small></div>
@@ -138,13 +156,14 @@
                             <p class ="ml-2 color">${data[x].Size}
                             ₹${newsubTotal} <button class ="btn btn-danger btn-sm  remove" id="${data[x].ProductId}">Remove</button></p></div>
                             </div><hr/>`;
-                    newsubTotal = 0;
-                }
-                content += `</div><div id="cartFooter"><h4 class="px-2 m-0">Subtotal<span class="float-right">₹${subTotal}</span></h4></div>
+                        newsubTotal = 0;
+                    }
+                    content += `</div><div id="cartFooter"><h4 class="px-2 m-0">Subtotal<span class="float-right">₹${subTotal}</span></h4></div>
                         <button class="btn btn-lg btn-success" id="checkoutBtn">Checkout</button></div>`
-                $('#cart').find('.card').append(content);
-                addRemoveEvent();
-                checkOutPage();
+                    $('#cart').find('.card').append(content);
+                    RemoveEvent();
+                    checkOutPage();
+                }
             });
         }
 
@@ -152,7 +171,7 @@
             $(".addToCart").click(function () {
                 let menuid = $(this).attr("menuid");
                 let productid = $(this).attr("productid");
-                let username= "@Request.Cookies["Username"].Value";
+                let username = sessionStorage.getItem('username');
                 let obj = {
                     MenuId: menuid,
                     ProductId: productid,
@@ -165,6 +184,9 @@
                     method: 'Post',
                     data: JSON.stringify(obj),
                     contentType: "application/json; charset=utf-8",
+                    headers: {
+                        'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                    },
                     success: function (data) {
                         displayCart();
                     },
@@ -195,7 +217,7 @@
                 return false;
             });
         }
-        function addRemoveEvent() {
+        function RemoveEvent() {
             $('.remove').click(function () {
                 let productid = $(this).attr("id");
                
@@ -203,6 +225,9 @@
                     url: 'http://localhost:53612/api/Pizza/DecreaseItemFromCart/' + productid,
                     method: 'Delete',
                     contentType: "application/json; charset=utf-8",
+                    headers: {
+                        'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                    },
                     success: function (data) {
                         displayCart();
                     },

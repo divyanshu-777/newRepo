@@ -50,6 +50,48 @@ namespace PizzaBAL.AutoMapper
             return UserObj;
         }
 
+        public Admin AdminLoginMap(LoginDto loginObj)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<LoginDto, Admin>();
+            });
+            var mapper = configuration.CreateMapper();
+            var UserObj = mapper.Map<Admin>(loginObj);
+            return UserObj;
+        }
 
+        public LoginDto AdminLoginMapReverse(Admin adminObj)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Admin, LoginDto>();
+            });
+            var mapper = configuration.CreateMapper();
+            var LoginDtoObj = mapper.Map<LoginDto>(adminObj);
+            return LoginDtoObj;
+        }
+
+        public User RegisterMap(RegisterUserDto registerObj)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<RegisterUserDto, User>();
+            });
+            var mapper = configuration.CreateMapper();
+            var UserObj = mapper.Map<User>(registerObj);
+            return UserObj;
+        }
+
+        public UserDto UserDetailMap(User userObj)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<User,UserDto>();
+            });
+            var mapper = configuration.CreateMapper();
+            var LoginDtoObj = mapper.Map<UserDto>(userObj);
+            return LoginDtoObj;
+        }
     }
 }

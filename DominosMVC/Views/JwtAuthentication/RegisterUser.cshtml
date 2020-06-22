@@ -1,0 +1,155 @@
+﻿@model DominosMVC.Models.RegisterDominos
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<meta name="viewport" content="width=device-width" />
+<title>LoginPage</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<style>
+    * {
+        color: white;
+    }
+
+    .bg {
+        background: url('https://www.giftpay.co.uk/demo/images/egiftcards/dominos.png') no-repeat;
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+    }
+
+    .bor {
+        border: 3px solid;
+        padding: 21px 65px;
+        margin-top: 20vh;
+        box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    }
+
+    .form-control{
+        margin-bottom: 26px;
+        margin-left: 20px;
+    }
+    .form-inline label{
+        margin-bottom: 27px;
+    }
+
+    .form-inline .form-control {
+        width:264px;
+    }
+    .btn-primary{
+        margin-left: 55px;
+}
+    h1{
+        margin-bottom: 20px;
+    }
+    
+
+    </style>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container-fluid bg">
+
+            @*<div class="jumbotron-fluid">
+                <h1 class="text-center">SIGN UP</h1>
+            </div>*@
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12"></div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                    <div class="form-inline bor">
+                        <h1 class="text-center">SignUp </h1><br/>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new {id="email", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Username, htmlAttributes: new { @placeholder = "Username", @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { id = "exampleInputEmail1", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new {  @placeholder = "password", @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { id = "exampleInputPassword1", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { id = "Phoneno", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { id = "Addr", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div >
+                            
+                           <button type="submit" class="btn btn-primary btn-block" id="signupbtn" formaction="/JwtAuthentication/Index" >Sign Up</button>
+                 
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+
+                    }
+
+    </body>
+
+<script>
+    $(document).ready(function () {
+        $('#signupbtn').click(function () {
+            let obj = {};
+            obj.Username = $('#exampleInputEmail1').val();
+            obj.Password = $('#exampleInputPassword1').val();
+            obj.Email = $('#email').val();
+            obj.Phoneno = $('#Phoneno').val();
+            obj.Address = $('#Addr').val();
+           if (obj != null) {
+                $.ajax({
+                    url: 'http://localhost:53612/api/Login/SignUp',
+                    method: 'Post',
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        document.location.href = "/JwtAuthentication/Index";
+                        alert("data Saved");
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                });
+            }
+        });
+    });
+</script>
+

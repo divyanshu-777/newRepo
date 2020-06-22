@@ -8,11 +8,11 @@ using DominosMVC.Models;
 
 namespace DominosMVCProject.Models.Infrastructure
 {
-    public class AutoMapperProfile:Profile
+    public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
         {
-            CreateMap<LoginDominosClass, LoginDto>();
+            CreateMap<AdminLogin, LoginDto>();
         }
     }
 }

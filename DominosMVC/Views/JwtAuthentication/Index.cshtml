@@ -1,0 +1,138 @@
+﻿
+
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+
+<title>Web Page Design</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" ,
+          initial-scale="1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<style>
+    * {
+        color: white;
+    }
+
+    .bg {
+        background: url('https://www.giftpay.co.uk/demo/images/egiftcards/dominos.png') no-repeat;
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+    }
+
+    .bor {
+        border: 0px solid;
+        padding: 50px 60px;
+        margin-top: 20vh;
+        box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    }
+</style>
+<body>
+    <div class="container-fluid bg">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+
+                <form class="bor">
+                    <h1 class="text-center"> LOGIN </h1>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">UserName</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+
+                    @*<div class="form-group">
+                            <label for="exampleInputPassword1">ConfirmPassword</label>
+                            <input type="password" class="form-control" id="confirmpass" placeholder="ConfirmPassword">
+                        </div>*@
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                    
+                    <input type="submit" class="btn btn-success btn-block" value="Login" id="loginbtn">
+                    <input type="submit" class="btn btn-success btn-block" value="LoginGoogle" id="logbtn">
+                    <br/>
+                    <div>
+                        <p style="color:#dc1e6d">Doesn't Have an Account?
+                    <input type="submit" class="btn btn-primary btn-sm" value="Signup"formaction="/JwtAuthentication/RegisterUser" id="signupbtn"></p>
+               </div>
+                 </form>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    $(document).ready(function(){
+    
+    $('#loginbtn').click(function () {
+
+        var obj = {
+            UserName: $('#exampleInputEmail1').val(),
+            Password: $('#exampleInputPassword1').val()
+        }
+        
+        sessionStorage.setItem('username', obj.UserName);
+        $.ajax({
+            url: 'http://localhost:53612/api/Login/LoginUser',
+            method: 'Post',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(obj),
+
+            success: function (resp) {
+                console.log(resp);
+                sessionStorage.setItem('tokens', resp);
+                invocesuccess();
+                alert("data Saved");
+
+            },
+            error: function (err) {
+                alert("not saved");
+            }
+        });
+    });
+
+   
+
+    });
+
+  
+
+    function invocesuccess() {
+        $.ajax({
+            url: 'http://localhost:53612/api/Login/Validate',
+            method: 'Get',
+            data: {
+                token: sessionStorage.getItem('tokens'),
+                username: $('#exampleInputEmail1').val()
+            },
+            success: function () {
+                document.location = 'http://localhost:56959/Dominos/MenuPage?username=' + $('#exampleInputEmail1').val();
+               // document.location.href = "/Dominos/MenuPage";
+                //alert("validation success");
+            },
+            error: function (err) {
+                alert("not saved");
+            }
+        });
+    }
+
+</script>

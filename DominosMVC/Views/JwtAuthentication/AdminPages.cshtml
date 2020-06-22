@@ -1,0 +1,217 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="~/css/AdminPage.css">
+<title>Domino&#x27;s ZERO Contact Delivery - Great Taste, Delivered Safe</title>
+<script src="https://kit.fontawesome.com/e0386161f3.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<nav class="navbar navbar-expand-lg navbar-light p-0">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span style="color:white" class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand px-3" href="#"><img src="~/Images/NavbarLogoBlue.jpg" alt="Domino's" id="navbarLogo" /></a>
+
+    <div class="collapse navbar-collapse " id="navbarMenu">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Order History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Terms & Conditions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About us</a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <i style="color:white" class="fas fa-user-circle fa-2x" id="loginIcon"></i>
+        <span class="navbar-text nav-link" id="accountInfo">
+            @if (Session["uname"] != null)
+            {
+                <span style="color:white">
+                    Hello @Session["uname"].ToString() <br />
+                    @Html.ActionLink("Logout", "Logout", "JwtAuthentication", new { @Style = "color:white" })
+                </span>
+            }
+
+        </span>
+    </div>
+</nav>
+
+
+
+
+
+<div class="container-fluid bg" style="background-color:#0c7aaf;">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+
+            <form class="bor">
+
+                <div class="form-group row">
+                    <label for="colFormLabel" class="col-sm-4 col-form-label">MenuId</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="menuid" placeholder="MenuId">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="colFormLabel" class="col-sm-4 col-form-label">MenuName</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="menuname" placeholder="MenuName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="colFormLabel" class="col-sm-4 col-form-label">Description</label>
+                    <div class="col-sm-6">
+                        <textarea type="text" class="form-control" id="description" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="colFormLabel" class="col-sm-4 col-form-label">Category</label>
+                    <div class="col-sm-6">
+                        <select name="Size" class="custom-select" id="category">
+                            <option value="Small">Veg</option>
+                            <option value="Medium">Non Veg</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="colFormLabel" class="col-sm-4 col-form-label">Price</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="price" placeholder="Price">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="colFormLabel" class="col-sm-4 col-form-label">Size</label>
+                    <div class="col-sm-6">
+                        <select name="Size" class="custom-select" id="size">
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <br>
+                <div class="text-center">
+                    <input type="submit" class="btn btn-success" id="AddMenu" value="Add To Menu">&nbsp; &nbsp; &nbsp; &nbsp;
+                    <button type="submit" class="btn btn-primary" id="DeleteMenu">DeleteMenu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="footer">
+    <div class="container-fluid px-5 pt-5" id="footer">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <ul>
+                    <li>
+                        <img src="/Content/images/icon3.png">
+                    </li>
+                    <li>
+                        <div>
+                            <a href="">Disclaimer</a>
+                            <a href="">Pizza Policy</a>
+                            <a href="">Faq</a>
+                            <a href="">Terms & Conditions</a>
+                            <a href="">Feedback</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <h5>DOWNLOAD APP</h5>
+                <img src="~/Images/HomePage/play_store.png" alt="" id="playstoreIcon" />
+                <img src="~/Images/HomePage/app_store.png" alt="" id="appstoreIcon" />
+            </div>
+        </div>
+    </div>
+    <div class="text-center py-3" id="copyrightFooter">
+        <p class="my-auto">All Rights Reserved. Copyright © Jubilant FoodWorks Ltd.</p>
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        console.log("hello");
+
+        $('#AddMenu').click(function () {
+            //alert("btn clicked");
+            var obj = {
+                MenuId: $('#menuid').val(),
+                MenuName: $('#menuname').val(),
+                Category: $('#category').val(),
+                Description: $('#description').val(),
+                Price: $('#price').val(),
+                Size:$('#size').val()
+            }
+
+            $.ajax({
+                url: 'http://localhost:53612/api/Pizza/AddToMenu',
+                method: 'post',
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                },
+                success: function(data)
+                {
+                    alert("dataSaved");
+                },
+                error:function(err)
+                {
+                    alert("not saved");
+                }
+            });
+
+        });
+
+        $('#DeleteMenu').click(function () {
+
+            let Menuid = $('#menuid').val();
+            $.ajax({
+                url: 'http://localhost:53612/api/Pizza/RemoveFromMenu/' + Menuid,
+                method: 'Delete',
+                contentType: "application/json; charset=utf-8",
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                },
+                success:function()
+                {
+                    alert("deleted");
+                },
+                error:function(err)
+                {
+                    alert("not deleted");
+                }
+            })
+        });
+    });
+</script>

@@ -18,6 +18,7 @@ namespace PizzaDAL
         public Price()
         {
             this.Carts = new HashSet<Cart>();
+            this.ItemOrdereds = new HashSet<ItemOrdered>();
         }
     
         public int ProductId { get; set; }
@@ -25,8 +26,10 @@ namespace PizzaDAL
         public string Size { get; set; }
         public int PriceOfProduct { get; set; }
     
-        public virtual Menu Menu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItemOrdered> ItemOrdereds { get; set; }
+        public virtual Menu Menu { get; set; }
     }
 }

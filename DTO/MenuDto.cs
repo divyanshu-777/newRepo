@@ -15,5 +15,6 @@ namespace DTO
         public string Image { get; set; }
 
         public virtual ICollection<PricesDto> Prices { get; set; }
+
     }
 }

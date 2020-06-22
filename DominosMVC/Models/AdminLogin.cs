@@ -6,7 +6,7 @@ using System.Web;
 
 namespace DominosMVC.Models
 {
-    public class LoginDominosClass
+    public class AdminLogin
     {
         [Required]
         public string Username { get; set; }

@@ -8,17 +8,23 @@ using PizzaBAL;
 using DTO;
 using System.Web.Http.Cors;
 using DominosProject.Models;
+using DominosProject.filter;
+
 namespace DominosProject.Controllers
 {
     [EnableCors("*","*","*")]
+    [RoutePrefix("api/Pizza")]
+   // [CustomFilters]
     public class PizzaController : ApiController
     {
+      
+
         /// <summary>
         /// This method will retrieve all pizza information
         /// by calling business layer method.
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet][Route("GetPizza")]
         public IHttpActionResult GetPizza()
         {
             MenuBal menuBalObj = new MenuBal();
@@ -30,13 +36,13 @@ namespace DominosProject.Controllers
         /// This method is responsible for saving order
         /// history by calling buisness layer method.
         /// </summary>
-        /// <param name="pizzaDtoObj"></param>
+        /// <param name="Username></param>
         /// <returns></returns>
-        [HttpPost]
-        public IHttpActionResult PostOrder([FromBody]List<pizzaDto> pizzaDtoObj)
+        [HttpPost][Route("PostOrder")]
+        public IHttpActionResult PostOrder([FromBody]string Username)
         {
             MenuBal menuBalObj = new MenuBal();
-            menuBalObj.SaveOrder(pizzaDtoObj);
+            menuBalObj.SaveOrder(Username);
             menuBalObj.EmptyCart();
             return Ok();
         }
@@ -47,7 +53,7 @@ namespace DominosProject.Controllers
         /// </summary>
         /// <param name="cartObj"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost][Route("AddCart")]
         public IHttpActionResult AddCart([FromBody] CartDTO cartObj)
         {
             MenuBal menuBalObj = new MenuBal();
@@ -60,7 +66,7 @@ namespace DominosProject.Controllers
         /// from DB by calling buisness layer method.
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet][Route("GetAllCartData")]
         public IHttpActionResult GetAllCartData()
         {
             MenuBal menuBalObj = new MenuBal();
@@ -74,7 +80,7 @@ namespace DominosProject.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPut][Route("IncreaseItemFromCart/{id}")]
         public IHttpActionResult IncreaseItemFromCart(int id)
         {
             MenuBal menuBalObj = new MenuBal();
@@ -88,7 +94,7 @@ namespace DominosProject.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete][Route("DecreaseItemFromCart/{id}")]
         public IHttpActionResult DecreaseItemFromCart(int id)
         {
             MenuBal menuBalObj = new MenuBal();
@@ -96,20 +102,43 @@ namespace DominosProject.Controllers
             return Ok();
         }
 
-
-        /// <summary>
-        /// this method will save user credentials 
-        /// by calling buisness layer method.
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public IHttpActionResult SignUp([FromBody]LoginDto login)
+        [HttpGet]
+        [Route("OrderHistoryData")]
+        public IHttpActionResult OrderHistoryData([FromUri]string Username)
         {
-            UserLoginBAL userBalObj = new UserLoginBAL();
-            userBalObj.AddUser(login);
+            // DominosEntities5 context = new DominosEntities5();
+          //  MenuDAL obj = new MenuDAL();
+            MenuBal menuBalObj = new MenuBal();
+            var pizza = menuBalObj.OrderHistory(Username);
+            return Ok(pizza);
+        }
+
+        [HttpPost]
+        [Route("AddToMenu")]
+        public IHttpActionResult AddToMenu([FromBody] AdMenuDto addMenu)
+        {
+            MenuBal menuBalObj = new MenuBal();
+            menuBalObj.AddToMenu(addMenu);
+            return Ok();
+
+        }
+        [HttpDelete]
+        [Route("RemoveFromMenu/{menuId}")]
+        public IHttpActionResult RemoveFromMenu(int menuId)
+        {
+            MenuBal menuBalObj = new MenuBal();
+            menuBalObj.DeleteFromMenu(menuId);
             return Ok();
         }
 
+        [HttpGet]
+        [Route("GetUserDetails")]
+        public IHttpActionResult GetUserDetails([FromUri]string Username)
+        {
+
+            UserLoginBAL userBalObj = new UserLoginBAL();
+            var pizza = userBalObj.GetUserDetail(Username);
+            return Ok(pizza);
+        }
     }
 }

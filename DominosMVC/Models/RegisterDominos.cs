@@ -8,15 +8,12 @@ namespace DominosMVC.Models
 {
     public class RegisterDominos
     {
-        [Required]
+       
         public string Username { get; set; }
-
-        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        public string Confirm_Password { get; set; }
+        public string Email { get; set; }
+        public long PhoneNo { get; set; }
+        public string Address { get; set; }
     }
 }

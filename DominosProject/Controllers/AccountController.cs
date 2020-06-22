@@ -16,10 +16,12 @@ using Microsoft.Owin.Security.OAuth;
 using DominosProject.Models;
 using DominosProject.Providers;
 using DominosProject.Results;
+using System.Web.Http.Cors;
 
 namespace DominosProject.Controllers
 {
     [Authorize]
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {

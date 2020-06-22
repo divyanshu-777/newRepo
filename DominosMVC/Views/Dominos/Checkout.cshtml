@@ -14,12 +14,8 @@
             <P>Please add some items from the menu.</P>
             <button class="btn" id="exploreMenu" onclick="location.href='/Dominos/MenuPage'" type="button">EXPLORE MENU</button>
         </div>
-    </div>
-    <div class="col-8 p-4" style="display:none">
-        <div class="numberOfItems"></div>
-        <a href="/home/menu" class="float-right">Explore Menu</a>
-        <div class="itemList"></div>
-    </div>
+    </div> 
+
     <div class="col-4 p-4">
         <p><b>Price Details</b></p>
         <div id="billAmount" class="px-4 py-3">
@@ -66,38 +62,47 @@
             var GrandTotal = 0;
             var subTotal = 0;
             var LineTotalPrice = 0;
-            $.getJSON('http://localhost:53612/api/Pizza/GetAllCartData', function (data) {
-                console.log(data);
-                if (data == "") {
-                    $("#loadCart").empty();
-                    $(".emptyCartData").html(old_html);
-                    $(".viewEmptyTotal").html(oldhtmlcart);
-                    return;
-                }
-                $("#emptyCartData").hide();
-                $("#loadCart").remove();
-                for (let x in data) {
+            $.ajax({
+                url: 'http://localhost:53612/api/Pizza/GetAllCartData',
+                method: 'Get',
+                headers:{
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                },
+                success: function (data) {
 
-                    LineTotalPrice = data[x].Price * data[x].Quantity;
-                    subTotal += LineTotalPrice;
-                    Gst = parseInt(subTotal * 0.05);
-                    LineTotal = data[x].Price * data[x].Quantity;
-                    GrandTotal = subTotal + Gst;
-                    items += `<div class="row mar">
+                    console.log(data);
+                    if (data == "") {
+                        $("#loadCart").empty();
+                        $(".emptyCartData").html(old_html);
+                        $(".viewEmptyTotal").html(oldhtmlcart);
+                        return;
+                    }
+                    $("#emptyCartData").hide();
+                    $("#loadCart").remove();
+                    for (let x in data) {
+
+                        LineTotalPrice = data[x].Price * data[x].Quantity;
+                        subTotal += LineTotalPrice;
+                        Gst = parseInt(subTotal * 0.05);
+                        LineTotal = data[x].Price * data[x].Quantity;
+                        GrandTotal = subTotal + Gst;
+                        items += `<div class="row mar">
                                     <div class ="col-sm-2"><img src="${data[x].Image}" id="imghgt"></div>
                                      <div class ="col-sm-10">
-                    <div class ="float-right text-center"><h5> ₹ ${ LineTotal}</h5>
+                    <div class ="float-right text-center"><h5> ₹ ${LineTotal}</h5>
                 <div class="Quantity">Quantity  <i class="fas fa-minus-square fa-lg" id="${data[x].ProductId}"></i>
                 ${data[x].Quantity}  <i class="fas fa-plus-square fa-lg" id="${data[x].ProductId}"></i></div></div>
                 <h5>${data[x].MenuName}</h5><p>${data[x].Description}</p><p>${data[x].Size}</p></div></div><hr/>`;
-                    LineTotal= 0;
-                }
+                        LineTotal = 0;
+                    }
 
-                $('.emptyCartData').html(items);
-                $('#subTotal').html("₹ " + subTotal);
-                $('#gst').html("₹ " + Gst);
-                $('#grandTotal').html("₹ " + GrandTotal);
-                 changeQuantityEvent()
+                    $('.emptyCartData').html(items);
+                    $('#subTotal').html("₹ " + subTotal);
+                    $('#gst').html("₹ " + Gst);
+                    $('#grandTotal').html("₹ " + GrandTotal);
+                    sessionStorage.setItem('Amount',GrandTotal);
+                    changeQuantityEvent()
+                }
             });
             }
 
@@ -109,6 +114,9 @@
                     url: 'http://localhost:53612/api/Pizza/IncreaseItemFromCart/'+ productid,
                     method: 'PUT',
                     contentType: "application/json; charset=utf-8",
+                    headers: {
+                        'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                    },
                     success: function (data) {
                         displayFinalCart();
                     },
@@ -126,6 +134,9 @@
                 url: 'http://localhost:53612/api/Pizza/DecreaseItemFromCart/' + productid,
                 method: 'Delete',
                 contentType: "application/json; charset=utf-8",
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                },
                 success: function (data) {
                     displayFinalCart();
                 },
@@ -138,34 +149,19 @@
 
         function addPlaceOrderRequest() {
             $("#placeOrder").click(function () {
-                let arrCart = [];
-                let username = "@Request.Cookies["Username"].Value";
 
-                $.getJSON('http://localhost:53612/api/Pizza/GetAllCartData', function (data) {
-                    for (var i in data) {
-                        if (data =="") {
-                            $(this).attr("disabled", "true");
-                        }
-                        arrCart.push(
-                    {
-                        "MenuId":data[i].MenuId,
-                        "Name": data[i].MenuName,
-                        "Price": data[i].Price,
-                        "Size": data[i].Size,
-                        "Quantity": data[i].Quantity,
-                        "Order_By": username
-                    });
-
-                    }
-
+                let username = sessionStorage.getItem('username');
                     $.ajax({
                         url: 'http://localhost:53612/api/Pizza/PostOrder',
                         method: 'Post',
-                        data: JSON.stringify(arrCart),
+                        data: JSON.stringify(username),
                         contentType: "application/json; charset=utf-8",
+                        headers: {
+                            'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                        },
                         success: function (data) {
-                            document.location.href = '@Url.Action( "SuccessPage", "Dominos")';
-                            console.log(data);
+                            // document.location.href = '@Url.Action( "PaymentDominos", "Payment")';
+                            sendUserDetails();
                         },
                         error: function (err) {
                             alert(err);
@@ -173,10 +169,28 @@
                     });
 
                 });
+        }
+
+        function sendUserDetails()
+        {
+            let username = sessionStorage.getItem('username');
+            let Amount= sessionStorage.getItem('Amount');
+            $.ajax({
+                url: 'http://localhost:53612/api/Pizza/GetUserDetails?Username=' + username,
+                method: 'Get',
+                contentType: "application/json; charset=utf-8",
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('tokens')
+                },
+                success: function (response) {
+                    console.log(response);
+                    document.location = 'http://localhost:56959/Payment/PaymentDominos?Email=' + response.Email+"&Phoneno="+response.PhoneNo+"&Amount="+Amount;
+                   // document.location.href = '@Url.Action( "PaymentDominos", "Payment")';
+                }
             });
         }
 
-       
+
 
     </script>
 }

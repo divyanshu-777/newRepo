@@ -37,6 +37,7 @@
     <Reference Include="DTO">
       <HintPath>..\DTO\bin\Debug\DTO.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="PizzaDAL">
       <HintPath>..\PizzaDAL\bin\Debug\PizzaDAL.dll</HintPath>
     </Reference>

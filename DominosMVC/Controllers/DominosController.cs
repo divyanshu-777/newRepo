@@ -14,10 +14,10 @@ namespace DominosMVC.Controllers
         {
             return View();
         }
-        [Authorize]
-        public ActionResult MenuPage()
+
+        public ActionResult MenuPage(string username)
         {
-            
+            Session["username"] = username;
 
             return View();
         }
@@ -27,8 +27,14 @@ namespace DominosMVC.Controllers
 
             return View();
         }
-
+        [HttpGet]
         public ActionResult SuccessPage()
+        {
+
+            return View();
+        }
+
+        public ActionResult OrderHistory()
         {
 
             return View();
@@ -36,9 +42,9 @@ namespace DominosMVC.Controllers
 
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
-            Session["uname"] = null;
-            return Redirect("/Login/LoginPage");
+           // FormsAuthentication.SignOut();
+            Session["username"] = null;
+            return Redirect("/JwtAuthentication/Index");
         }
     }
 }

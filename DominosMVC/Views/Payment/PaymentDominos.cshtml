@@ -1,0 +1,80 @@
+﻿@model DominosMVC.Models.PaytmLogin
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+
+<title>Web Page Design</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" ,
+          initial-scale="1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<style>
+    * {
+        color: black;
+    }
+
+    .bg {
+        background: url('https://thumbs.dreamstime.com/z/logo-paytm-payments-bank-samsung-tablet-paytm-indian-electronic-payment-e-commerce-brand-paytm-payments-bank-logo-100223109.jpg') no-repeat;
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+    }
+
+    .bor {
+        border: 0px solid;
+        padding: 50px 60px;
+        margin-top: 20vh;
+        box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    }
+</style>
+<body>
+
+    <div class="container-fluid bg">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+
+                <form class="bor">
+                    <h2 class="text-center">PAYER INFORMATION </h2>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "email", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @placeholder = "Username", @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { id = "exampleInputEmail1", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @placeholder = "password", @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { id = "exampleInputPassword1", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="text-center">
+                    <input type="submit" class="btn btn-success btn-block" value="Save" id="loginbtn" formaction="PaymentDominos" formmethod="post"><br />
+                   </div>
+                </form>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        </div>
+    </div>
+
+
+</body>

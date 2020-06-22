@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5b32c22a0cad4181894a19181e0cdae5" Name="Diagram1">
+        <EntityTypeShape EntityType="DominosModel.Cart" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.ItemOrdered" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.Menu" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.Order" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.Price" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DominosModel.User" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="DominosModel.FK__Cart__MenuId__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="DominosModel.FK__Cart__OrderedBy__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="DominosModel.FK__Cart__ProductId__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DominosModel.FK__ItemOrder__MenuI__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="DominosModel.FK__ItemOrder__Order__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="DominosModel.FK__ItemOrder__Produ__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="DominosModel.FK__Price__MenuId__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="DominosModel.FK__Order__OrderedBy__1A14E395" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DominosModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

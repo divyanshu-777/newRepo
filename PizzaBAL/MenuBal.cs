@@ -47,19 +47,20 @@ namespace PizzaBAL
         /// for saving order history information in DB.
         /// </summary>
         /// <param name="Cart"></param>
-        public void SaveOrder(List<pizzaDto> Cart)
+        public void SaveOrder(string Username)
         {
+            var CartData = pizzaDAL.GetCartData();
             double totalAmount = new double();
             List<ItemOrdered> ListitemOrdered = new List<ItemOrdered>();
-            foreach (var item in Cart)
+            foreach (var item in CartData)
             {
                 totalAmount += item.Price;
-                ListitemOrdered.Add(new ItemOrdered { MenuId = item.MenuId, Quantity = item.Quantity });
+                ListitemOrdered.Add(new ItemOrdered { MenuId = item.MenuId, Quantity = item.Quantity, ProductId=item.ProductId});
             }
             var orderObj = new Order
             {
                 OrderTime = DateTime.Now,
-                OrderedBy = Cart[0].Order_By,
+                OrderedBy = Username,
                 OrderAmount = Convert.ToInt32(totalAmount * 1.05d)
             };
             pizzaDAL.SaveOrder(orderObj, ListitemOrdered);
@@ -109,7 +110,7 @@ namespace PizzaBAL
         /// <param name="id"></param>
         public void DecreaseCartData(int id)
         {
-            pizzaDAL.DecreaseCartData(id);
+            pizzaDAL.RemoveCartData(id);
         }
 
         /// <summary>
@@ -120,5 +121,54 @@ namespace PizzaBAL
         {
             pizzaDAL.EmptyCart();
         }
+
+        //public List<OrderHistoryDto> OrderHistory(string username)
+        //{
+        //    var data = pizzaDAL.OrderHistoryData(username);
+        //    List<OrderHistoryDto> Orderobj = new List<OrderHistoryDto>();
+        //    foreach (var items in data)
+        //    {
+        //        Orderobj.Add(pizzaMapper.JoinMapperOrderHistory(items));
+        //    }
+        //    return Orderobj;
+        //}
+
+        public List<OrderDTO> OrderHistory(string username)
+        {
+           // DominosEntities5 context = new DominosEntities5();
+             var data = pizzaDAL.OrderHistoryData(username);
+            //  var data = context.Orders.Where(ord => ord.OrderedBy == username).ToList();
+            List<OrderDTO> ordObj = new List<OrderDTO>();
+            foreach (var items in data)
+            {
+                ordObj.Add(pizzaMapper.MapperOrderHistory(items));
+            }
+            return ordObj;
+           // return data;
+        }
+
+        public void AddToMenu(AdMenuDto addmenuObj)
+        {
+            var menuobj = new Menu
+            {
+                MenuName = addmenuObj.MenuName,
+                Description=addmenuObj.Description,
+                Category=addmenuObj.Category
+            };
+            var priceObj = new Price
+            {
+                Size=addmenuObj.Size,
+                PriceOfProduct=addmenuObj.Price
+            };
+
+            pizzaDAL.AddToMenus(menuobj, priceObj);
+        }
+
+        public void DeleteFromMenu(int menuid)
+        {
+            pizzaDAL.DeleteFromMenu(menuid);
+        }
+
+       
     }
 }

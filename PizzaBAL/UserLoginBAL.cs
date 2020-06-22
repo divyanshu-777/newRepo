@@ -39,15 +39,38 @@ namespace PizzaBAL
             return newdata;
         }
 
+        public LoginDto CheckAdmin(LoginDto login)
+        {
+            var data = pizzaDAL.CheckAdmin(loginMapp.AdminLoginMap(login));
+            var newdata = loginMapp.AdminLoginMapReverse(data);
+            return newdata;
+        }
+
+        public string VerifyUsername(string username)
+        {
+            return pizzaDAL.VerifyUsername(username);
+        }
+
         /// <summary>
         /// This method will call method of data layer class
         /// to add login credentials of users in DB.
         /// </summary>
         /// <param name="ld"></param>
-        public void AddUser(LoginDto login)
+        public void AddUser(RegisterUserDto login)
         {
-            pizzaDAL.AddUser(loginMapp.LoginMap(login));
+            pizzaDAL.AddUser(loginMapp.RegisterMap(login));
 
+        }
+
+        public UserDto GetUserDetail(string username)
+        {
+            var details = pizzaDAL.GetUserDetail(username);
+            //List<UserDto> obj = new List<UserDto>();
+            //foreach(var data in details)
+            //{
+            //    obj.Add(loginMapp.UserDetailMap(data));
+            //}
+            return loginMapp.UserDetailMap(details);
         }
 
     }
